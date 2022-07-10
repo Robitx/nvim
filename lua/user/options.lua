@@ -39,3 +39,23 @@ vim.opt.fillchars.eob=" "
 vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")                   -- treats foo-bar as single term
+
+vim.cmd([[
+  " highlight long lines
+  highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  let &colorcolumn=join(range(91,91),",")
+
+  " automatically remove whitespace
+  autocmd FileType python,json autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+  "sudo save
+  command! W :call histadd("cmd", "w !sudo tee % > /dev/null")
+                          \ | :echom ":w !sudo tee % > /dev/null"
+
+  "easy access to yank register
+  vmap <C-p> "0p
+  nmap <C-p> "0p
+
+  " turn off search highlight <backspace><backspace>
+  nnoremap <backspace><backspace> :nohlsearch<CR>
+]])
