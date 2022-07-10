@@ -49,6 +49,9 @@ cmp.setup({
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
+  completion = {
+    autocomplete = false,
+  },
 
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -64,8 +67,11 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
+      local copilot_keys = vim.fn["copilot#Accept"]("")
 			if cmp.visible() then
 				cmp.select_next_item()
+			elseif copilot_keys ~= "" then
+				vim.api.nvim_feedkeys(copilot_keys, "i", false)
 			elseif luasnip.expandable() then
 				luasnip.expand()
 			elseif luasnip.expand_or_jumpable() then
@@ -123,6 +129,6 @@ cmp.setup({
 		documentation = cmp.config.window.bordered(),
 	},
 	experimental = {
-		ghost_text = true,
+		ghost_text = false,
 	},
 })
