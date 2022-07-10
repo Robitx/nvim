@@ -77,6 +77,7 @@ return packer.startup(function(use)
   use { "cpea2506/one_monokai.nvim" }
   use { "sainnhe/sonokai" }
   use { "ChristianChiarulli/nvcode-color-schemes.vim" }
+  use { "patstockwell/vim-monokai-tasty" }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" } -- The completion plugin
@@ -101,6 +102,15 @@ return packer.startup(function(use)
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim", commit = "d96eaa914aab6cfc4adccb34af421bdd496468b0" }
+
+use {
+  'phaazon/hop.nvim',
+  branch = 'v2', -- optional but strongly recommended
+  config = function()
+    -- you can configure Hop the way you like here; see :h hop-config
+    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+  end
+}
 
   -- Treesitter
   use {

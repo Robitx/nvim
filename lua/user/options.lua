@@ -1,4 +1,5 @@
 vim.opt.backup = false                          -- creates a backup file
+vim.opt.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 1                           -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
@@ -19,7 +20,6 @@ vim.opt.termguicolors = true                    -- set term gui colors (most ter
 vim.opt.timeoutlen = 1000                       -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.undofile = true                         -- enable persistent undo
 vim.opt.updatetime = 300                        -- faster completion (4000ms default)
-vim.opt.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
 vim.opt.softtabstop = 2                         -- insert 2 spaces for a tab
