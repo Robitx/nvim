@@ -69,6 +69,14 @@ return packer.startup(function(use)
   -- Colorschemes
   use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
   use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
+  -- use { "tanvirtin/monokai.nvim" }
+  use { "ray-x/starry.nvim" }
+  use { "malbernaz/monokai.nvim"}
+  use { "phanviet/vim-monokai-pro" }
+  use { "marko-cerovac/material.nvim" }
+  use { "cpea2506/one_monokai.nvim" }
+  use { "sainnhe/sonokai" }
+  use { "ChristianChiarulli/nvcode-color-schemes.vim" }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" } -- The completion plugin

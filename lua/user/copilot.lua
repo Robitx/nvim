@@ -24,6 +24,6 @@ vim.g.copilot_tab_fallback = ""
 -- <Plug>(copilot-previous)
 
 
-vim.cmd[[highlight CopilotSuggestion guifg=#555555 ctermfg=8]]
+vim.cmd[[highlight CopilotSuggestion guifg=#ff5f00 guibg=#000000 ctermfg=8]]
 
 
