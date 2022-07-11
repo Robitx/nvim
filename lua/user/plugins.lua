@@ -64,6 +64,7 @@ return packer.startup(function(use)
   use { "lewis6991/impatient.nvim", commit = "969f2c5c90457612c09cf2a13fee1adaa986d350" }
   use { "lukas-reineke/indent-blankline.nvim", commit = "6177a59552e35dfb69e1493fd68194e673dc3ee2" }
   use { "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" }
+
 	use("folke/which-key.nvim")
 
   -- Colorschemes
@@ -97,6 +98,20 @@ return packer.startup(function(use)
   use { "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" } -- for formatters and linters
   use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
 
+  use {
+    "folke/trouble.nvim",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  -- -- Go plugins
+  -- use { "ray-x/go.nvim" }
+
   -- Copilot
   use { "github/copilot.vim" }
 
@@ -117,6 +132,8 @@ use {
     "nvim-treesitter/nvim-treesitter",
     commit = "518e27589c0463af15463c9d675c65e464efc2fe",
   }
+  use { 'nvim-treesitter/nvim-treesitter-context' }
+  use { 'nvim-treesitter/playground' }
 
   -- Git
   use { "lewis6991/gitsigns.nvim", commit = "c18e016864c92ecf9775abea1baaa161c28082c3" }
