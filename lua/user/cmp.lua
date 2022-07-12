@@ -30,7 +30,7 @@ local kind_icons = {
 	Value = "",
 	Enum = "",
 	Keyword = "",
-	Snippet = "",
+	Snippet = "",
 	Color = "",
 	File = "",
 	Reference = "",
@@ -42,6 +42,7 @@ local kind_icons = {
 	Operator = "",
 	TypeParameter = "",
 }
+
 
 cmp.setup({
 	snippet = {
@@ -101,15 +102,19 @@ cmp.setup({
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
+      local kind = vim_item.kind
 			vim_item.kind = kind_icons[vim_item.kind]
+      -- vim_item.kind = string.format("%s %s  ", kind_icons[vim_item.kind], vim_item.kind)
 			vim_item.menu = ({
-				nvim_lsp = "",
-				nvim_lua = "",
-				luasnip = "",
-				buffer = "",
-				path = "",
-				emoji = "",
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[Lua]",
+				luasnip = "[Snip]",
+				buffer = "[Buffer]",
+				path = "[Path]",
+				emoji = "[Emoji]",
 			})[entry.source.name]
+      -- prepend menu with whitespace
+      vim_item.menu = string.format("%s %s", kind, vim_item.menu)
 			return vim_item
 		end,
 	},
@@ -124,6 +129,7 @@ cmp.setup({
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
 	},
+  preselect = { cmp.PreselectMode.None },
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
