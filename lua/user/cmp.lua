@@ -44,6 +44,8 @@ local kind_icons = {
 }
 
 
+
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -59,7 +61,10 @@ cmp.setup({
 		["<C-j>"] = cmp.mapping.select_next_item(),
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+		["<C-Space>"] = cmp.mapping(function()
+      vim.fn["copilot#Dismiss"]()
+      cmp.complete()
+    end, { "i", "c" }),
 		["<C-e>"] = cmp.mapping({
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
@@ -69,23 +74,20 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
       local copilot_keys = vim.fn["copilot#Accept"]("")
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif copilot_keys ~= "" then
-				vim.api.nvim_feedkeys(copilot_keys, "i", false)
-			elseif luasnip.expandable() then
-				luasnip.expand()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			elseif check_backspace() then
-				fallback()
-			else
-				fallback()
-			end
-		end, {
-			"i",
-			"s",
-		}),
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif copilot_keys ~= "" then
+        vim.api.nvim_feedkeys(copilot_keys, "i", false)
+      elseif luasnip.expandable() then
+        luasnip.expand()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif check_backspace() then
+        fallback()
+      else
+        fallback()
+      end
+    end, {"i", "s",}),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
