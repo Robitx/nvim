@@ -70,6 +70,7 @@ return packer.startup(function(use)
   -- Colorschemes
   use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
   use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
+  use { 'rebelot/kanagawa.nvim' }
   -- use { "tanvirtin/monokai.nvim" }
   use { "ray-x/starry.nvim" }
   use { "malbernaz/monokai.nvim"}
@@ -118,14 +119,14 @@ return packer.startup(function(use)
   -- Telescope
   use { "nvim-telescope/telescope.nvim", commit = "d96eaa914aab6cfc4adccb34af421bdd496468b0" }
 
-use {
-  'phaazon/hop.nvim',
-  branch = 'v2', -- optional but strongly recommended
-  config = function()
-    -- you can configure Hop the way you like here; see :h hop-config
-    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-  end
-}
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    end
+  }
 
   -- Treesitter
   use {
