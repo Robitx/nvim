@@ -3,8 +3,10 @@ return {
     gopls = {
       experimentalPostfixCompletions = true,
       analyses = {
-        unusedparams = true,
+        nilness = true,
         shadow = true,
+        unusedparams = true,
+        unusewrites = true,
       },
       staticcheck = true,
     },
