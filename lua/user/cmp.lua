@@ -43,8 +43,9 @@ local kind_icons = {
 	TypeParameter = "",
 }
 
-
-
+cmp.event:on('complete_done', function()
+  vim.cmd("Copilot enable")
+end)
 
 cmp.setup({
 	snippet = {
@@ -63,11 +64,18 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(function()
       vim.fn["copilot#Dismiss"]()
+      vim.cmd("Copilot disable")
       cmp.complete()
     end, { "i", "c" }),
 		["<C-e>"] = cmp.mapping({
-			i = cmp.mapping.abort(),
-			c = cmp.mapping.close(),
+			i = function()
+        vim.cmd("Copilot enable")
+        cmp.mapping.abort()
+      end,
+			c = function()
+        vim.cmd("Copilot enable")
+        cmp.mapping.close()
+      end,
 		}),
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
