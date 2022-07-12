@@ -24,7 +24,7 @@ M.setup = function()
 
   local config = {
     virtual_text = {
-      spacing = 4,
+      spacing = 12,
       source = true,
     }, -- disable virtual text
     signs = {
