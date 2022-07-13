@@ -22,29 +22,21 @@ if not lspconfig_status_ok then
   return
 end
 
-local opts = {}
+local custom_configs = {
+  sumneko_lua = require("user.lsp.settings.sumneko_lua"),
+  gopls = require("user.lsp.settings.gopls"),
+  pyright = require("user.lsp.settings.pyright"),
+}
 
+local opts = {}
 for _, server in pairs(servers) do
   opts = {
     on_attach = require("user.lsp.handlers").on_attach,
     capabilities = require("user.lsp.handlers").capabilities,
   }
 
-
-  if server == "sumneko_lua" then
-    local custom_opts = require "user.lsp.settings.sumneko_lua"
-    opts = vim.tbl_deep_extend("force", custom_opts, opts)
-  end
-
-  if server == "pyright" then
-    local custom_opts = require "user.lsp.settings.pyright"
-    opts = vim.tbl_deep_extend("force", custom_opts, opts)
-  end
-
-
-  if server == "gopls" then
-    local custom_opts = require "user.lsp.settings.gopls"
-    opts = vim.tbl_deep_extend("force", custom_opts, opts)
+  if custom_configs[server] then
+    opts = vim.tbl_deep_extend("force", custom_configs[server], opts)
   end
 
   lspconfig[server].setup(opts)
