@@ -88,6 +88,10 @@ local mappings = {
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	f = {
     name = "Telescope",
+		F = {
+			"<cmd>Telescope find_files<cr>",
+			"Find files with preview",
+		},
 		f = {
 			"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 			"Find files",
