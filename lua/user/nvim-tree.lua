@@ -53,6 +53,11 @@ nvim_tree.setup {
       error = "",
     },
   },
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    }
+  },
   view = {
     width = 30,
     height = 30,
