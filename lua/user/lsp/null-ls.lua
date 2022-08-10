@@ -23,3 +23,13 @@ null_ls.setup {
     diagnostics.flake8,
   },
 }
+
+-- only null-ls handles formatting
+local callback = function()
+    vim.lsp.buf.format({
+        bufnr = bufnr,
+        filter = function(client)
+            return client.name == "null-ls"
+        end
+    })
+end
