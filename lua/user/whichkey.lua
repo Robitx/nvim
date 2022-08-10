@@ -179,6 +179,12 @@ local mappings = {
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
 	},
 
+	c = {
+		name = "Copilot",
+		d = { "<cmd>Copilot disable<cr>", "Disable" },
+		e = { "<cmd>Copilot enable<cr>", "Enable" },
+	},
+
 	t = {
 		name = "Terminal",
 		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
