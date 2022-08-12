@@ -147,7 +147,7 @@ local mappings = {
 			"<cmd>Telescope lsp_workspace_diagnostics<cr>",
 			"Workspace Diagnostics",
 		},
-		f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
 		h = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
