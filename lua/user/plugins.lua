@@ -111,8 +111,8 @@ return packer.startup(function(use)
 	})
 
 	-- -- Go plugins
-	use({ "ray-x/go.nvim" })
 	use({ "ray-x/guihua.lua" }) -- recommanded if need floating window support
+	use({ "ray-x/go.nvim" })
 
 	-- Copilot
 	use({ "github/copilot.vim" })
