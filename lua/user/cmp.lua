@@ -121,6 +121,7 @@ cmp.setup({
 				luasnip = "[Snip]",
 				buffer = "[Buffer]",
 				path = "[Path]",
+        ['vim-dadbod-completion'] = '[DB]',
 				emoji = "[Emoji]",
 			})[entry.source.name]
       -- prepend menu with whitespace
@@ -147,4 +148,13 @@ cmp.setup({
 	experimental = {
 		ghost_text = false,
 	},
+})
+
+local autocomplete_group = vim.api.nvim_create_augroup('vimrc_autocompletion', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'sql', 'mysql', 'plsql' },
+  callback = function()
+    cmp.setup.buffer({ sources = { { name = 'vim-dadbod-completion' } } })
+  end,
+  group = autocomplete_group,
 })

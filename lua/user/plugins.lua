@@ -81,6 +81,11 @@ return packer.startup(function(use)
 	use({ "ChristianChiarulli/nvcode-color-schemes.vim" })
 	use({ "patstockwell/vim-monokai-tasty" })
 
+  -- Database plugins
+	use({ "tpope/vim-dadbod" })
+	use({ "kristijanhusak/vim-dadbod-ui" })
+	use({ "kristijanhusak/vim-dadbod-completion" })
+
 	-- cmp plugins
 	use({ "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" }) -- The completion plugin
 	use({ "hrsh7th/cmp-buffer", commit = "62fc67a2b0205136bc3e312664624ba2ab4a9323" }) -- buffer completions
@@ -94,8 +99,8 @@ return packer.startup(function(use)
 	use({ "rafamadriz/friendly-snippets", commit = "d27a83a363e61009278b6598703a763ce9c8e617" }) -- a bunch of snippets to use
 
 	-- LSP
-  use({ "williamboman/mason.nvim" })
-  use({ "williamboman/mason-lspconfig.nvim" })
+	use({ "williamboman/mason.nvim" })
+	use({ "williamboman/mason-lspconfig.nvim" })
 	use({ "neovim/nvim-lspconfig" }) -- enable LSP
 	-- use({ "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" }) -- simple to use language server installer
 	use({ "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" }) -- for formatters and linters
