@@ -81,7 +81,10 @@ return packer.startup(function(use)
 	use({ "ChristianChiarulli/nvcode-color-schemes.vim" })
 	use({ "patstockwell/vim-monokai-tasty" })
 
-  -- Database plugins
+  -- Plugin to read .evn files
+	use({ "tpope/vim-dotenv" })
+
+	-- Database plugins
 	use({ "tpope/vim-dadbod" })
 	use({ "kristijanhusak/vim-dadbod-ui" })
 	use({ "kristijanhusak/vim-dadbod-completion" })
