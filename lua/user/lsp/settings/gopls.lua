@@ -7,6 +7,7 @@ return {
         shadow = true,
         unusedparams = true,
         unusewrites = true,
+        QF1008 = false,
       },
       staticcheck = true,
     },
