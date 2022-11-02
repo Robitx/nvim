@@ -23,7 +23,9 @@ null_ls.setup({
 		formatting.stylua,
 		formatting.google_java_format,
 		formatting.goimports,
-		diagnostics.flake8,
+		diagnostics.flake8.with({
+			extra_args = { "--max-line-length", "100" },
+		}),
 	},
 
 	-- -- you can reuse a shared lspconfig on_attach callback here
