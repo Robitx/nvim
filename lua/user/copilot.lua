@@ -10,6 +10,8 @@ vim.g.copilot_filetypes = { xml = false }
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_tab_fallback = ""
+vim.g.copilot_ignore_node_version = true
+vim.g.copilot_idle_delay = 50
 -- vim.keymap.set.keymap("i", "<C-a>", ":copilot#Accept('\\<CR>')<CR>", { silent = true })
 
 -- <C-]>                   Dismiss the current suggestion.
