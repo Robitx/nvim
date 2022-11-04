@@ -38,7 +38,6 @@ packer.init({
 	},
 })
 
-
 -- Install your plugins here
 return packer.startup(function(use)
 	-- Have packer manage itself
@@ -57,7 +56,7 @@ return packer.startup(function(use)
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({ "kyazdani42/nvim-tree.lua" })
 
-	use({ "akinsho/bufferline.nvim" })
+	use({ "akinsho/bufferline.nvim", tag = "v2.12.0", requires = "kyazdani42/nvim-web-devicons" })
 	use({ "moll/vim-bbye" })
 	use({ "nvim-lualine/lualine.nvim" })
 	use({ "akinsho/toggleterm.nvim" })
@@ -82,7 +81,7 @@ return packer.startup(function(use)
 	use({ "ChristianChiarulli/nvcode-color-schemes.vim" })
 	use({ "patstockwell/vim-monokai-tasty" })
 
-  -- Plugin to read .evn files
+	-- Plugin to read .evn files
 	use({ "tpope/vim-dotenv" })
 
 	-- Database plugins
@@ -150,8 +149,8 @@ return packer.startup(function(use)
 
 	-- Git
 	use({
-    "lewis6991/gitsigns.nvim",
-  })
+		"lewis6991/gitsigns.nvim",
+	})
 
 	-- -- DAP
 	-- use({ "mfussenegger/nvim-dap" })
