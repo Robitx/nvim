@@ -1,31 +1,52 @@
--- use this table to disable/enable filetypes
-vim.g.copilot_filetypes = { xml = false }
+local status_ok, copilot = pcall(require, "copilot")
+if not status_ok then
+	return
+end
 
--- since most are enabled by default you can turn them off
--- using this table and only enable for a few filetypes
--- vim.g.copilot_filetypes = { ["*"] = false, python = true }
-
-
--- imap <silent><script><expr> <C-a> copilot#Accept("\<CR>")
-vim.g.copilot_no_tab_map = true
-vim.g.copilot_assume_mapped = true
-vim.g.copilot_tab_fallback = ""
-vim.g.copilot_ignore_node_version = true
-vim.g.copilot_idle_delay = 50
--- vim.keymap.set.keymap("i", "<C-a>", ":copilot#Accept('\\<CR>')<CR>", { silent = true })
-
--- <C-]>                   Dismiss the current suggestion.
--- <Plug>(copilot-dismiss)
---
---                                                 *copilot-i_ALT-]*
--- <M-]>                   Cycle to the next suggestion, if one is available.
--- <Plug>(copilot-next)
---
---                                                 *copilot-i_ALT-[*
--- <M-[>                   Cycle to the previous suggestion.
--- <Plug>(copilot-previous)
-
-
-vim.cmd[[highlight CopilotSuggestion guifg=#ff5f00 guibg=#000000 ctermfg=8]]
-
-
+copilot.setup({
+	panel = {
+		enabled = true,
+		auto_refresh = true,
+		keymap = {
+			jump_prev = "[[",
+			jump_next = "]]",
+			accept = "<M-a>",
+			refresh = "gr",
+			open = "<M-o>",
+		},
+	},
+	suggestion = {
+		enabled = true,
+		auto_trigger = true,
+		debounce = 75,
+		keymap = {
+			accept = "<M-a>",
+			next = "<M-]>",
+			prev = "<M-[>",
+			dismiss = "<M-d>",
+		},
+	},
+	filetypes = {
+		yaml = false,
+		markdown = false,
+		help = false,
+		gitcommit = false,
+		gitrebase = false,
+		hgcommit = false,
+		svn = false,
+		cvs = false,
+		["."] = false,
+	},
+	-- Node version must be < 18
+	copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v16.18.1/bin/node",
+	plugin_manager_path = vim.fn.stdpath("data") .. "/site/pack/packer",
+	server_opts_overrides = {
+		trace = "verbose",
+		settings = {
+			advanced = {
+				listCount = 10, -- #completions for panel
+				inlineSuggestCount = 5, -- #completions for getCompletions
+			},
+		},
+	},
+})

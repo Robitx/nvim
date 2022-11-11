@@ -182,8 +182,7 @@ local mappings = {
 
 	c = {
 		name = "Copilot",
-		d = { "<cmd>Copilot disable<cr>", "Disable" },
-		e = { "<cmd>Copilot enable<cr>", "Enable" },
+		t = { "<cmd>lua require('copilot.suggestion').toggle_auto_trigger()<cr>", "Toggle" },
 	},
 
 	t = {

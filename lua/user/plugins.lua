@@ -125,7 +125,8 @@ return packer.startup(function(use)
 	use({ "ray-x/go.nvim" })
 
 	-- Copilot
-	use({ "github/copilot.vim" })
+	-- use({ "github/copilot.vim" })
+	use({ "zbirenbaum/copilot.lua" })
 
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })

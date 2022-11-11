@@ -43,8 +43,16 @@ local kind_icons = {
 	TypeParameter = "",
 }
 
-cmp.event:on('complete_done', function()
-  vim.cmd("Copilot enable")
+cmp.event:on("complete_done", function()
+  vim.b.copilot_suggestion_hidden = false
+end)
+
+cmp.event:on("menu_opened", function()
+  vim.b.copilot_suggestion_hidden = true
+end)
+
+cmp.event:on("menu_closed", function()
+  vim.b.copilot_suggestion_hidden = false
 end)
 
 cmp.setup({
@@ -63,17 +71,14 @@ cmp.setup({
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(function()
-      vim.fn["copilot#Dismiss"]()
-      vim.cmd("Copilot disable")
+      require("copilot.suggestion").dismiss()
       cmp.complete()
     end, { "i", "c" }),
 		["<C-e>"] = cmp.mapping({
 			i = function()
-        vim.cmd("Copilot enable")
         cmp.mapping.abort()
       end,
 			c = function()
-        vim.cmd("Copilot enable")
         cmp.mapping.close()
       end,
 		}),
@@ -81,11 +86,10 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
-      local copilot_keys = vim.fn["copilot#Accept"]("")
       if cmp.visible() then
         cmp.select_next_item()
-      elseif copilot_keys ~= "" then
-        vim.api.nvim_feedkeys(copilot_keys, "i", false)
+      elseif require("copilot.suggestion").is_visible() then
+        require("copilot.suggestion").accept()
       elseif luasnip.expandable() then
         luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
