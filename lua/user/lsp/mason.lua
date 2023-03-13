@@ -24,7 +24,7 @@ mason.setup({
 })
 
 mason_lspconfig.setup({
-	ensure_installed = { "sumneko_lua" },
+	ensure_installed = { "lua_ls" },
 	automatic_installation = false,
 })
 
@@ -35,8 +35,8 @@ mason_lspconfig.setup_handlers({
 	function(server_name) -- default handler (optional)
 		require("lspconfig")[server_name].setup({})
 	end,
-	["sumneko_lua"] = function()
-		lspconfig.sumneko_lua.setup({
+	["lua_ls"] = function()
+		lspconfig.lua_ls.setup({
 			settings = {
 				Lua = {
 					diagnostics = {
@@ -50,7 +50,7 @@ mason_lspconfig.setup_handlers({
 
 local servers = {
 	"clangd",
-	"sumneko_lua",
+	"lua_ls",
 	"cssls",
 	"html",
 	"tsserver",
@@ -63,7 +63,7 @@ local servers = {
 
 --
 local custom_configs = {
-	sumneko_lua = require("user.lsp.settings.sumneko_lua"),
+	lua_ls = require("user.lsp.settings.lua_ls"),
 	gopls = require("user.lsp.settings.gopls"),
 	pyright = require("user.lsp.settings.pyright"),
 }
