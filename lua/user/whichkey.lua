@@ -29,22 +29,6 @@ vim.g.mapleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Normal --
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
-
-
-
--- Navigate buffers
-keymap("n", "<M-l>", ":bnext<CR>", opts)
-keymap("n", "<M-h>", ":bprevious<CR>", opts)
-
--- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
-
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
@@ -63,11 +47,31 @@ keymap("i", "jk", "<ESC>", opts)
 -- keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
 -- HOP
-vim.api.nvim_set_keymap('', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-vim.api.nvim_set_keymap('', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
-vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
-vim.api.nvim_set_keymap('', 's', "<cmd>lua require'hop'.hint_words({ })<cr>", {})
+vim.api.nvim_set_keymap(
+	"",
+	"f",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+	{}
+)
+vim.api.nvim_set_keymap(
+	"",
+	"F",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+	{}
+)
+vim.api.nvim_set_keymap(
+	"",
+	"t",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
+	{}
+)
+vim.api.nvim_set_keymap(
+	"",
+	"T",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>",
+	{}
+)
+vim.api.nvim_set_keymap("", "s", "<cmd>lua require'hop'.hint_words({ })<cr>", {})
 
 local setup = {
 	plugins = {
@@ -139,6 +143,12 @@ which_key.setup(setup)
 
 -- NORMAL mode mappings
 which_key.register({
+	["<C-h>"] = { "<C-w>h", "Move to left window" },
+	["<C-j>"] = { "<C-w>j", "Move to bottom window" },
+	["<C-k>"] = { "<C-w>k", "Move to top window" },
+	["<C-l>"] = { "<C-w>l", "Move to right window" },
+	["<M-l>"] = { ":bnext<CR>", "Next buffer" },
+	["<M-h>"] = { ":bprevious<CR>", "Previous buffer" },
 	["<C-w>"] = {
 		["e"] = { "<cmd>enew<cr>", "New File in current window" },
 		["<Up>"] = { "<cmd>resize -2<cr>", "Decrease window height" },
@@ -279,8 +289,10 @@ which_key.register({
 -- s, x, v modes are handled the same way by which_key
 which_key.register({
 	["<leader>"] = {
-		["/"] = { '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
-            "Toggle Comment" },
+		["/"] = {
+			'<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
+			"Toggle Comment",
+		},
 	},
 	["p"] = { '"_dP', "Paste" },
 	["<"] = { "<gv", "Shift Left" },
