@@ -52,11 +52,4 @@ vim.cmd([[
   "sudo save
   command! W :call histadd("cmd", "w !sudo tee % > /dev/null")
                           \ | :echom ":w !sudo tee % > /dev/null"
-
-  "easy access to yank register
-  vmap <C-p> "0p
-  nmap <C-p> "0p
-
-  " turn off search highlight <backspace><backspace>
-  nnoremap <backspace><backspace> :nohlsearch<CR>
 ]])
