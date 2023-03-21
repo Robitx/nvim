@@ -128,6 +128,12 @@ return packer.startup(function(use)
 	-- use({ "github/copilot.vim" })
 	use({ "zbirenbaum/copilot.lua" })
 
+	-- GPT
+	use({
+        "robitx/gpt.nvim",
+        requires = {"MunifTanjim/nui.nvim"}
+    })
+
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })

@@ -151,15 +151,22 @@ which_key.register({
 	["<M-h>"] = { ":bprevious<CR>", "Previous buffer" },
 	["<C-w>"] = {
 		["e"] = { "<cmd>enew<cr>", "New File in current window" },
+		["p"] = { "<cmd>NeoZoomToggle<cr>", "Pop up window Toggle" },
 		["<Up>"] = { "<cmd>resize -2<cr>", "Decrease window height" },
 		["<Down>"] = { "<cmd>resize +2<cr>", "Increase window height" },
 		["<Left>"] = { "<cmd>vertical resize -2<cr>", "Decrease window width" },
 		["<Right>"] = { "<cmd>vertical resize +2<cr>", "Increase window width" },
 	},
+	["<C-g>"] = {
+		c = { "<cmd>lua require('gpt').cancel()<cr>", "Cancel" },
+		i = { "<cmd>lua require('user.gpt').prompt_inline()<cr>", "Inline after" },
+		p = { "<cmd>lua require('user.gpt').prompt_popup()<cr>", "Popup" },
+		e = { "<cmd>lua require('user.gpt').prompt_enew()<cr>", "Enew" },
+	},
 	["<leader>"] = {
 		["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "Toggle comment" },
 
-		["a"] = { "<cmd>Alpha<cr>", "Alpha" },
+		["A"] = { "<cmd>Alpha<cr>", "Alpha" },
 		["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 		["w"] = { "<cmd>w!<CR>", "Save" },
 		["W"] = { "<cmd>w !sudo tee %<CR>", "Sudo Save" },
@@ -294,11 +301,35 @@ which_key.register({
 			"Toggle Comment",
 		},
 	},
+	["<C-g>"] = {
+		c = { "<cmd>lua require('gpt').cancel()<cr>", "Cancel" },
+		r = { "<cmd>lua require('user.gpt').replace()<cr>", "Replace" },
+		i = { "<cmd>lua require('user.gpt').visual_prompt_inline()<cr>", "Inline after" },
+		p = { "<cmd>lua require('user.gpt').visual_prompt_popup()<cr>", "Popup" },
+		e = { "<cmd>lua require('user.gpt').visual_prompt_enew()<cr>", "Enew" },
+	},
 	["p"] = { '"_dP', "Paste" },
 	["<"] = { "<gv", "Shift Left" },
 	[">"] = { ">gv", "Shift Right" },
 }, {
 	mode = "v", -- VISUAL mode
+	prefix = "",
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+})
+
+-- INSERT mode mappings
+which_key.register({
+	["<C-g>"] = {
+		i = { "<cmd>lua require('user.gpt').prompt_inline()<cr>", "Inline after" },
+		p = { "<cmd>lua require('user.gpt').prompt_popup()<cr>", "Popup" },
+		e = { "<cmd>lua require('user.gpt').prompt_enew()<cr>", "Enew" },
+		c = { "<cmd>lua require('gpt').cancel()<cr>", "Cancel" },
+	},
+}, {
+	mode = "i", -- INSERT mode
 	prefix = "",
 	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
 	silent = true, -- use `silent` when creating keymaps
