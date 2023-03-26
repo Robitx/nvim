@@ -4,9 +4,6 @@ if not status_ok then
 end
 
 gpt.setup({
-    api_key = "xxx"
-    -- You could read it from environment variable like this
-    -- or just run empty setup since plugin reads this env by default
     -- api_key = os.getenv("OPENAI_API_KEY")
 })
 
