@@ -64,11 +64,6 @@ return {
 		end,
 	},
 
-	-- -- Go plugins
-	{ "ray-x/guihua.lua" }, -- recommanded if need floating window support
-	{ "ray-x/go.nvim" },
-
-
 	-- GPT
 	{
         "robitx/gpt.nvim",
