@@ -1,8 +1,3 @@
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-	return
-end
-
 vim.cmd([[
   "easy access to yank register
   vmap <C-p> "0p
@@ -135,10 +130,8 @@ local setup = {
 	},
 }
 
-which_key.setup(setup)
-
 -- NORMAL mode mappings
-which_key.register({
+local normal_mappings = {
 	["<C-h>"] = { "<C-w>h", "Move to left window" },
 	["<C-j>"] = { "<C-w>j", "Move to bottom window" },
 	["<C-k>"] = { "<C-w>k", "Move to top window" },
@@ -279,18 +272,20 @@ which_key.register({
 			v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 		},
 	},
-}, {
+}
+
+local normal_opts = {
 	mode = "n", -- NORMAL mode
 	prefix = "",
 	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
 	silent = true, -- use `silent` when creating keymaps
 	noremap = true, -- use `noremap` when creating keymaps
 	nowait = true, -- use `nowait` when creating keymaps
-})
+}
 
 -- VISUAL mode mappings
 -- s, x, v modes are handled the same way by which_key
-which_key.register({
+local visual_mappings = {
 	["<leader>"] = {
 		["/"] = {
 			'<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
@@ -307,28 +302,49 @@ which_key.register({
 	["p"] = { '"_dP', "Paste" },
 	["<"] = { "<gv", "Shift Left" },
 	[">"] = { ">gv", "Shift Right" },
-}, {
+}
+
+local visual_opts = {
 	mode = "v", -- VISUAL mode
 	prefix = "",
 	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
 	silent = true, -- use `silent` when creating keymaps
 	noremap = true, -- use `noremap` when creating keymaps
 	nowait = true, -- use `nowait` when creating keymaps
-})
+}
 
 -- INSERT mode mappings
-which_key.register({
+local insert_mappings = {
 	["<C-g>"] = {
 		i = { "<cmd>lua require('user.gpt').prompt_inline()<cr>", "Inline after" },
 		p = { "<cmd>lua require('user.gpt').prompt_popup()<cr>", "Popup" },
 		e = { "<cmd>lua require('user.gpt').prompt_enew()<cr>", "Enew" },
 		c = { "<cmd>lua require('gpt').cancel()<cr>", "Cancel" },
 	},
-}, {
+}
+
+local insert_opts = {
 	mode = "i", -- INSERT mode
 	prefix = "",
 	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
 	silent = true, -- use `silent` when creating keymaps
 	noremap = true, -- use `noremap` when creating keymaps
 	nowait = true, -- use `nowait` when creating keymaps
-})
+}
+
+
+return {
+    "folke/which-key.nvim",
+    config = function()
+        local status_ok, which_key = pcall(require, "which-key")
+        if not status_ok then
+            return
+        end
+
+        which_key.setup(setup)
+
+        which_key.register(normal_mappings, normal_opts)
+        which_key.register(visual_mappings, visual_opts)
+        which_key.register(insert_mappings, insert_opts)
+    end,
+}

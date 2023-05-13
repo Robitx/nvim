@@ -23,7 +23,6 @@ return {
 	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "goolord/alpha-nvim" },
 
-    { "folke/which-key.nvim" },
 
 	-- Colorschemes
 	{ "folke/tokyonight.nvim" },
