@@ -20,7 +20,6 @@ return {
 	{ "akinsho/toggleterm.nvim" },
 	{ "ahmedkhalf/project.nvim" },
 	{ "lukas-reineke/indent-blankline.nvim" },
-	{ "goolord/alpha-nvim" },
 
 
 
