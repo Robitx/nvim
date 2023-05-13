@@ -1,5 +1,5 @@
 require("user.options")
-require("user.plugins")
+require("user.lazy")
 require("user.autocommands")
 require("user.colorscheme")
 require("user.copilot")
