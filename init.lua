@@ -1,7 +1,6 @@
 require("user.options")
 require("user.lazy")
 require("user.autocommands")
-require("user.colorscheme")
 require("user.cmp")
 require("user.telescope")
 require("user.treesitter")

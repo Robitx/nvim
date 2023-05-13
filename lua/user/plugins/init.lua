@@ -24,19 +24,6 @@ return {
 	{ "goolord/alpha-nvim" },
 
 
-	-- Colorschemes
-	{ "folke/tokyonight.nvim" },
-	{ "lunarvim/darkplus.nvim" },
-	{ "rebelot/kanagawa.nvim" },
-	-- use { "tanvirtin/monokai.nvim" }
-	{ "ray-x/starry.nvim" },
-	{ "malbernaz/monokai.nvim" },
-	{ "phanviet/vim-monokai-pro" },
-	{ "marko-cerovac/material.nvim" },
-	{ "cpea2506/one_monokai.nvim" },
-	{ "sainnhe/sonokai" },
-	{ "ChristianChiarulli/nvcode-color-schemes.vim" },
-	{ "patstockwell/vim-monokai-tasty" },
 
 	-- Plugin to read .evn files
 	{ "tpope/vim-dotenv" },
