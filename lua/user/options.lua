@@ -41,6 +41,9 @@ vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")                   -- treats foo-bar as single term
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 vim.cmd([[
   " highlight long lines
   highlight OverLength ctermbg=red ctermfg=white guibg=#592929
