@@ -19,8 +19,6 @@ return {
 	{ "nvim-lualine/lualine.nvim" },
 	{ "akinsho/toggleterm.nvim" },
 	{ "ahmedkhalf/project.nvim" },
-	{ "lukas-reineke/indent-blankline.nvim" },
-
 
 
 	-- Plugin to read .evn files
