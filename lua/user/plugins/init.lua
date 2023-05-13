@@ -6,10 +6,6 @@ return {
 	-- Autopairs, integrates with both cmp and treesitter
 	{ "windwp/nvim-autopairs" },
 
-	-- Plugins for vs code like commenting
-	{ "numToStr/Comment.nvim" },
-	{ "JoosepAlviste/nvim-ts-context-commentstring" },
-
 	-- File explorer
 	{ "kyazdani42/nvim-web-devicons" },
 	{ "kyazdani42/nvim-tree.lua" },
