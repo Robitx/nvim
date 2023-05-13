@@ -82,9 +82,6 @@ return {
 	{ "ray-x/guihua.lua" }, -- recommanded if need floating window support
 	{ "ray-x/go.nvim" },
 
-	-- Copilot
-	-- { "github/copilot.vim" },
-	{ "zbirenbaum/copilot.lua" },
 
 	-- GPT
 	{
