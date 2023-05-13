@@ -19,7 +19,6 @@ return {
 	{ "nvim-lualine/lualine.nvim" },
 	{ "akinsho/toggleterm.nvim" },
 	{ "ahmedkhalf/project.nvim" },
-	{ "lewis6991/impatient.nvim" },
 	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "goolord/alpha-nvim" },
 
