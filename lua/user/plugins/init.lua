@@ -59,7 +59,8 @@ return {
 	-- GPT
 	{
         "robitx/gpt.nvim",
-        dependencies = {"MunifTanjim/nui.nvim"}
+        dependencies = {"MunifTanjim/nui.nvim"},
+        dev = true,
     },
 
 	-- Telescope
