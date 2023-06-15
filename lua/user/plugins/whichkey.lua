@@ -148,9 +148,9 @@ local normal_mappings = {
 	},
 	["<C-g>"] = {
 		c = { "<cmd>lua require('gpt').cmd_cancel()<cr>", "Cancel" },
-		i = { "<cmd>lua require('gpt').cmd_selected_inline()<cr>", "Inline after" },
-		p = { "<cmd>lua require('gpt').cmd_selected_popup()<cr>", "Popup" },
-		e = { "<cmd>lua require('gpt').cmd_selected_enew()<cr>", "Enew" },
+		i = { "<cmd>lua require('gpt').cmd_inline()<cr>", "Inline after" },
+		p = { "<cmd>lua require('gpt').cmd_popup()<cr>", "Popup" },
+		e = { "<cmd>lua require('gpt').cmd_enew()<cr>", "Enew" },
 		n = { "<cmd>lua require('gpt').cmd_new_chat()<cr>", "New chat" },
 		l = { "<cmd>lua require('gpt').cmd_latest_chat()<cr>", "Latest chat" },
 	},
@@ -322,9 +322,9 @@ local visual_opts = {
 local insert_mappings = {
 	["<C-g>"] = {
 		c = { "<cmd>lua require('gpt').cmd_cancel()<cr>", "Cancel" },
-		i = { "<cmd>lua require('gpt').cmd_selected_inline()<cr>", "Inline after" },
-		p = { "<cmd>lua require('gpt').cmd_selected_popup()<cr>", "Popup" },
-		e = { "<cmd>lua require('gpt').cmd_selected_enew()<cr>", "Enew" },
+		i = { "<cmd>lua require('gpt').cmd_inline()<cr>", "Inline after" },
+		p = { "<cmd>lua require('gpt').cmd_popup()<cr>", "Popup" },
+		e = { "<cmd>lua require('gpt').cmd_enew()<cr>", "Enew" },
 		n = { "<cmd>lua require('gpt').cmd_new_chat()<cr>", "New chat" },
 		l = { "<cmd>lua require('gpt').cmd_latest_chat()<cr>", "Latest chat" },
 	},

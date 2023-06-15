@@ -10,7 +10,7 @@ local config = {
 
 return {
 	"robitx/gpt.nvim",
-	dependencies = { "MunifTanjim/nui.nvim" },
+	dependencies = { "MunifTanjim/nui.nvim", "nvim-telescope/telescope.nvim" },
 	dev = true,
 
 	config = function()
