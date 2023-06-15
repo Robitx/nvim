@@ -56,13 +56,6 @@ return {
 		end,
 	},
 
-	-- GPT
-	{
-        "robitx/gpt.nvim",
-        dependencies = {"MunifTanjim/nui.nvim"},
-        dev = true,
-    },
-
 	-- Telescope
 	{ "nvim-telescope/telescope.nvim" },
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
