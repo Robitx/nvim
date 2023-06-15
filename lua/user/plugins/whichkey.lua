@@ -147,10 +147,12 @@ local normal_mappings = {
 		["<Right>"] = { "<cmd>vertical resize +2<cr>", "Increase window width" },
 	},
 	["<C-g>"] = {
-		c = { "<cmd>lua require('gpt').cancel()<cr>", "Cancel" },
-		i = { "<cmd>lua require('user.gpt').prompt_inline()<cr>", "Inline after" },
-		p = { "<cmd>lua require('user.gpt').prompt_popup()<cr>", "Popup" },
-		e = { "<cmd>lua require('user.gpt').prompt_enew()<cr>", "Enew" },
+		c = { "<cmd>lua require('gpt').cmd_cancel()<cr>", "Cancel" },
+		i = { "<cmd>lua require('gpt').cmd_selected_inline()<cr>", "Inline after" },
+		p = { "<cmd>lua require('gpt').cmd_selected_popup()<cr>", "Popup" },
+		e = { "<cmd>lua require('gpt').cmd_selected_enew()<cr>", "Enew" },
+		n = { "<cmd>lua require('gpt').cmd_new_chat()<cr>", "New chat" },
+		l = { "<cmd>lua require('gpt').cmd_latest_chat()<cr>", "Latest chat" },
 	},
 	["<leader>"] = {
 		["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "Toggle comment" },
@@ -291,13 +293,16 @@ local visual_mappings = {
 			'<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
 			"Toggle Comment",
 		},
+		v = { "<cmd>lua require('gpt').H.get_selection()<cr>", "Visual selection" },
 	},
 	["<C-g>"] = {
-		c = { "<cmd>lua require('gpt').cancel()<cr>", "Cancel" },
-		r = { "<cmd>lua require('user.gpt').replace()<cr>", "Replace" },
-		i = { "<cmd>lua require('user.gpt').visual_prompt_inline()<cr>", "Inline after" },
-		p = { "<cmd>lua require('user.gpt').visual_prompt_popup()<cr>", "Popup" },
-		e = { "<cmd>lua require('user.gpt').visual_prompt_enew()<cr>", "Enew" },
+		c = { "<cmd>lua require('gpt').cmd_cancel()<cr>", "Cancel" },
+		r = { "<cmd>lua require('gpt').cmd_replace()<cr>", "Replace" },
+		i = { "<cmd>lua require('gpt').cmd_selected_inline()<cr>", "Inline after" },
+		p = { "<cmd>lua require('gpt').cmd_selected_popup()<cr>", "Popup" },
+		e = { "<cmd>lua require('gpt').cmd_selected_enew()<cr>", "Enew" },
+		n = { "<cmd>lua require('gpt').cmd_new_chat()<cr>", "New chat" },
+		l = { "<cmd>lua require('gpt').cmd_latest_chat()<cr>", "Latest chat" },
 	},
 	["p"] = { '"_dP', "Paste" },
 	["<"] = { "<gv", "Shift Left" },
@@ -316,10 +321,12 @@ local visual_opts = {
 -- INSERT mode mappings
 local insert_mappings = {
 	["<C-g>"] = {
-		i = { "<cmd>lua require('user.gpt').prompt_inline()<cr>", "Inline after" },
-		p = { "<cmd>lua require('user.gpt').prompt_popup()<cr>", "Popup" },
-		e = { "<cmd>lua require('user.gpt').prompt_enew()<cr>", "Enew" },
-		c = { "<cmd>lua require('gpt').cancel()<cr>", "Cancel" },
+		c = { "<cmd>lua require('gpt').cmd_cancel()<cr>", "Cancel" },
+		i = { "<cmd>lua require('gpt').cmd_selected_inline()<cr>", "Inline after" },
+		p = { "<cmd>lua require('gpt').cmd_selected_popup()<cr>", "Popup" },
+		e = { "<cmd>lua require('gpt').cmd_selected_enew()<cr>", "Enew" },
+		n = { "<cmd>lua require('gpt').cmd_new_chat()<cr>", "New chat" },
+		l = { "<cmd>lua require('gpt').cmd_latest_chat()<cr>", "Latest chat" },
 	},
 }
 
