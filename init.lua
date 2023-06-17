@@ -1,4 +1,5 @@
 require("user.options")
+require("user.globals")
 require("user.lazy")
 require("user.autocommands")
 require("user.cmp")
