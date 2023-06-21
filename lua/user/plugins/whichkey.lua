@@ -155,6 +155,7 @@ local normal_mappings = {
 		l = { "<cmd>lua require('gpt').cmd.latest_chat()<cr>", "Latest chat" },
 	},
 	["<leader>"] = {
+		["<leader>x"] = { "<cmd>w! | source %<cr>", "Save and source" },
 		["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "Toggle comment" },
 
 		["A"] = { "<cmd>Alpha<cr>", "Alpha" },
@@ -339,19 +340,18 @@ local insert_opts = {
 	nowait = true, -- use `nowait` when creating keymaps
 }
 
-
 return {
-    "folke/which-key.nvim",
-    config = function()
-        local status_ok, which_key = pcall(require, "which-key")
-        if not status_ok then
-            return
-        end
+	"folke/which-key.nvim",
+	config = function()
+		local status_ok, which_key = pcall(require, "which-key")
+		if not status_ok then
+			return
+		end
 
-        which_key.setup(setup)
+		which_key.setup(setup)
 
-        which_key.register(normal_mappings, normal_opts)
-        which_key.register(visual_mappings, visual_opts)
-        which_key.register(insert_mappings, insert_opts)
-    end,
+		which_key.register(normal_mappings, normal_opts)
+		which_key.register(visual_mappings, visual_opts)
+		which_key.register(insert_mappings, insert_opts)
+	end,
 }
