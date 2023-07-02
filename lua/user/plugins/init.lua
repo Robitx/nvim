@@ -16,7 +16,6 @@ return {
 	{ "akinsho/toggleterm.nvim" },
 	{ "ahmedkhalf/project.nvim" },
 
-
 	-- Plugin to read .evn files
 	{ "tpope/vim-dotenv" },
 

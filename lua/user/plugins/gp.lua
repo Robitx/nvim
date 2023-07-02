@@ -5,10 +5,10 @@ local config = {
 return {
 	"robitx/gp.nvim",
 	dependencies = {
-        -- Telescope
-        { "nvim-telescope/telescope.nvim" },
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    },
+		-- Telescope
+		{ "nvim-telescope/telescope.nvim" },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	},
 	dev = true,
 
 	config = function()
