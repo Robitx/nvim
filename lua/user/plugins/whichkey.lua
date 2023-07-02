@@ -147,12 +147,16 @@ local normal_mappings = {
 		["<Right>"] = { "<cmd>vertical resize +2<cr>", "Increase window width" },
 	},
 	["<C-g>"] = {
-		c = { "<cmd>lua require('gpt').cmd.cancel()<cr>", "Cancel" },
-		i = { "<cmd>lua require('gpt').cmd.inline()<cr>", "Inline after" },
-		p = { "<cmd>lua require('gpt').cmd.popup()<cr>", "Popup" },
-		e = { "<cmd>lua require('gpt').cmd.enew()<cr>", "Enew" },
-		n = { "<cmd>lua require('gpt').cmd.new_chat()<cr>", "New chat" },
-		l = { "<cmd>lua require('gpt').cmd.latest_chat()<cr>", "Latest chat" },
+		c = { "<cmd>GpChatNew<cr>", "New Chat" },
+		f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
+		d = { "<cmd>GpChatDelete<cr>", "Chat Delete" },
+		["<C-g>"] = { "<cmd>GpChatRespond<cr>", "Chat Respond" },
+
+		i = { "<cmd>GpInline<cr>", "Inline" },
+		a = { "<cmd>GpAppend<cr>", "Append" },
+		b = { "<cmd>GpPrepend<cr>", "Prepend" },
+		e = { "<cmd>GpEnew<cr>", "Enew" },
+		p = { "<cmd>GpPopup<cr>", "Popup" },
 	},
 	["<leader>"] = {
 		["<leader>x"] = { "<cmd>w! | source %<cr>", "Save and source" },
@@ -297,13 +301,13 @@ local visual_mappings = {
 		v = { "<cmd>lua require('gpt').H.get_selection()<cr>", "Visual selection" },
 	},
 	["<C-g>"] = {
-		c = { "<cmd>lua require('gpt').cmd.cancel()<cr>", "Cancel" },
-		r = { "<cmd>lua require('gpt').cmd.replace()<cr>", "Replace" },
-		i = { "<cmd>lua require('gpt').cmd.selected_inline()<cr>", "Inline after" },
-		p = { "<cmd>lua require('gpt').cmd.selected_popup()<cr>", "Popup" },
-		e = { "<cmd>lua require('gpt').cmd.selected_enew()<cr>", "Enew" },
-		n = { "<cmd>lua require('gpt').cmd.new_chat()<cr>", "New chat" },
-		l = { "<cmd>lua require('gpt').cmd.latest_chat()<cr>", "Latest chat" },
+		c = { "<cmd>GpVisualChatNew<cr>", "Visual Chat New" },
+
+		r = { "<cmd>GpVisualRewrite<cr>", "Visual Rewrite" },
+		a = { "<cmd>GpVisualAppend<cr>", "Visual Append" },
+		b = { "<cmd>GpVisualPrepend<cr>", "Visual Prepend" },
+		e = { "<cmd>GpVisualEnew<cr>", "Visual Enew" },
+		p = { "<cmd>GpVisualPopup<cr>", "Visual Popup" },
 	},
 	["p"] = { '"_dP', "Paste" },
 	["<"] = { "<gv", "Shift Left" },
@@ -322,12 +326,16 @@ local visual_opts = {
 -- INSERT mode mappings
 local insert_mappings = {
 	["<C-g>"] = {
-		c = { "<cmd>lua require('gpt').cmd.cancel()<cr>", "Cancel" },
-		i = { "<cmd>lua require('gpt').cmd.inline()<cr>", "Inline after" },
-		p = { "<cmd>lua require('gpt').cmd.popup()<cr>", "Popup" },
-		e = { "<cmd>lua require('gpt').cmd.enew()<cr>", "Enew" },
-		n = { "<cmd>lua require('gpt').cmd.new_chat()<cr>", "New chat" },
-		l = { "<cmd>lua require('gpt').cmd.latest_chat()<cr>", "Latest chat" },
+		c = { "<cmd>GpChatNew<cr>", "New Chat" },
+		f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
+		d = { "<cmd>GpChatDelete<cr>", "Chat Delete" },
+		["<C-g>"] = { "<cmd>GpChatRespond<cr>", "Chat Respond" },
+
+		i = { "<cmd>GpInline<cr>", "Inline" },
+		a = { "<cmd>GpAppend<cr>", "Append" },
+		b = { "<cmd>GpPrepend<cr>", "Prepend" },
+		e = { "<cmd>GpEnew<cr>", "Enew" },
+		p = { "<cmd>GpPopup<cr>", "Popup" },
 	},
 }
 
