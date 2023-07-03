@@ -298,7 +298,6 @@ local visual_mappings = {
 			'<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
 			"Toggle Comment",
 		},
-		v = { "<cmd>lua require('gpt').H.get_selection()<cr>", "Visual selection" },
 	},
 	["<C-g>"] = {
 		c = { "<cmd>GpVisualChatNew<cr>", "Visual Chat New" },
