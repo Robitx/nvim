@@ -11,7 +11,7 @@ local config = {
 	},
 
 	-- directory for storing chat files
-	chat_dir = os.getenv("HOME") .. "/.local/share/nvim/gp/chats",
+	chat_dir = "/zaloha/gpt_chats",
 	-- chat model
 	chat_model = "gpt-3.5-turbo-16k",
 	-- chat temperature
