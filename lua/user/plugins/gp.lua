@@ -27,6 +27,8 @@ local config = {
 		.. " in two or three words. Respond only with those words.",
 	-- chat topic model
 	chat_topic_gen_model = "gpt-3.5-turbo-16k",
+	-- explicitly confirm deletion of a chat file
+	chat_confirm_delete = false,
 
 	-- command prompt prefix for asking user for input
 	command_prompt_prefix = "🤖 ~ ",
@@ -44,11 +46,6 @@ local config = {
 
 return {
 	"robitx/gp.nvim",
-	dependencies = {
-		-- Telescope
-		{ "nvim-telescope/telescope.nvim" },
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-	},
 	dev = true,
 
 	config = function()
