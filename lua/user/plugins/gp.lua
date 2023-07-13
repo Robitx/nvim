@@ -11,7 +11,7 @@ local config = {
 	},
 
 	-- directory for storing chat files
-	chat_dir = os.getenv("HOME") .. "/.local/share/nvim/gp/chats",
+	chat_dir = "/zaloha/gp_chats",
 	-- chat model (string with model name or table with model name and parameters)
 	chat_model = { model = "gpt-3.5-turbo-16k", temperature = 0.7, top_p = 1 },
 	-- chat model system prompt
@@ -31,7 +31,7 @@ local config = {
 	-- command prompt prefix for asking user for input
 	command_prompt_prefix = "🤖 ~ ",
 	-- command model (string with model name or table with model name and parameters)
-	command_model = { model = "gpt-4", temperature = 0.7, top_p = 1 },
+	command_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
 	-- command system prompt
 	command_system_prompt = "You are an AI that strictly generates pure formated final code, without providing any comments or explanations.",
 
