@@ -152,7 +152,7 @@ local normal_mappings = {
 		d = { "<cmd>GpChatDelete<cr>", "Chat Delete" },
 		["<C-g>"] = { "<cmd>GpChatRespond<cr>", "Chat Respond" },
 
-		i = { "<cmd>GpInline<cr>", "Inline" },
+		r = { "<cmd>GpRewrite<cr>", "Rewrite" },
 		a = { "<cmd>GpAppend<cr>", "Append" },
 		b = { "<cmd>GpPrepend<cr>", "Prepend" },
 		e = { "<cmd>GpEnew<cr>", "Enew" },
@@ -300,13 +300,13 @@ local visual_mappings = {
 		},
 	},
 	["<C-g>"] = {
-		c = { "<cmd>GpVisualChatNew<cr>", "Visual Chat New" },
+		c = { ":<C-u>'<,'>GpChatNew<cr>", "Visual Chat New" },
 
-		r = { "<cmd>GpVisualRewrite<cr>", "Visual Rewrite" },
-		a = { "<cmd>GpVisualAppend<cr>", "Visual Append" },
-		b = { "<cmd>GpVisualPrepend<cr>", "Visual Prepend" },
-		e = { "<cmd>GpVisualEnew<cr>", "Visual Enew" },
-		p = { "<cmd>GpVisualPopup<cr>", "Visual Popup" },
+		r = { ":<C-u>'<,'>GpRewrite<cr>", "Visual Rewrite" },
+		a = { ":<C-u>'<,'>GpAppend<cr>", "Visual Append" },
+		b = { ":<C-u>'<,'>GpPrepend<cr>", "Visual Prepend" },
+		e = { ":<C-u>'<,'>GpEnew<cr>", "Visual Enew" },
+		p = { ":<C-u>'<,'>GpPopup<cr>", "Visual Popup" },
 	},
 	["p"] = { '"_dP', "Paste" },
 	["<"] = { "<gv", "Shift Left" },
@@ -330,7 +330,7 @@ local insert_mappings = {
 		d = { "<cmd>GpChatDelete<cr>", "Chat Delete" },
 		["<C-g>"] = { "<cmd>GpChatRespond<cr>", "Chat Respond" },
 
-		i = { "<cmd>GpInline<cr>", "Inline" },
+		r = { "<cmd>GpRewrite<cr>", "Rewrite" },
 		a = { "<cmd>GpAppend<cr>", "Append" },
 		b = { "<cmd>GpPrepend<cr>", "Prepend" },
 		e = { "<cmd>GpEnew<cr>", "Enew" },
