@@ -149,8 +149,6 @@ local normal_mappings = {
 	["<C-g>"] = {
 		c = { "<cmd>GpChatNew<cr>", "New Chat" },
 		f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
-		d = { "<cmd>GpChatDelete<cr>", "Chat Delete" },
-		["<C-g>"] = { "<cmd>GpChatRespond<cr>", "Chat Respond" },
 
 		r = { "<cmd>GpRewrite<cr>", "Rewrite" },
 		a = { "<cmd>GpAppend<cr>", "Append" },
@@ -327,8 +325,6 @@ local insert_mappings = {
 	["<C-g>"] = {
 		c = { "<cmd>GpChatNew<cr>", "New Chat" },
 		f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
-		d = { "<cmd>GpChatDelete<cr>", "Chat Delete" },
-		["<C-g>"] = { "<cmd>GpChatRespond<cr>", "Chat Respond" },
 
 		r = { "<cmd>GpRewrite<cr>", "Rewrite" },
 		a = { "<cmd>GpAppend<cr>", "Append" },
