@@ -5,9 +5,17 @@ local config = {
 	cmd_prefix = "Gp",
 	-- example hook functions
 	hooks = {
-		InspectPlugin = function(plugin)
+		InspectPlugin = function(plugin, params)
 			print(string.format("Plugin structure:\n%s", vim.inspect(plugin)))
+			print(string.format("Command params:\n%s", vim.inspect(params)))
 		end,
+
+		-- -- example of making :%GpChatNew a dedicated command which
+		-- -- opens new chat with the entire current buffer as a context
+		-- BufferChatNew = function(plugin, _)
+		--     -- call GpChatNew command in range mode on whole buffer
+		--     vim.api.nvim_command("%" .. plugin.config.cmd_prefix .. "ChatNew")
+		-- end,
 	},
 
 	-- directory for storing chat files
@@ -29,18 +37,22 @@ local config = {
 	chat_confirm_delete = false,
 	-- conceal model parameters in chat
 	chat_conceal_model_params = true,
+	-- local shortcuts bound to the chat buffer
+	-- (be careful to choose something which will work across specified modes)
+	chat_shortcut_respond = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g><C-g>" },
+	chat_shortcut_delete = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>d" },
 
 	-- command prompt prefix for asking user for input
 	command_prompt_prefix = "🤖 ~ ",
 	-- command model (string with model name or table with model name and parameters)
 	command_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
 	-- command system prompt
-	command_system_prompt = "You are an AI that strictly generates pure formated final code, without providing any comments or explanations.",
+	command_system_prompt = "You are an AI that strictly generates just the formated final code.",
 
 	-- templates
 	template_selection = "I have the following code from {{filename}}:\n\n```{{filetype}}\n{{selection}}\n```\n\n{{command}}",
 	template_rewrite = "I have the following code from {{filename}}:\n\n```{{filetype}}\n{{selection}}\n```\n\n{{command}}"
-		.. "\n\nRespond just with the pure formated final code. !!And please: No ``` code ``` blocks.",
+		.. "\n\nRespond just with the formated final code. !!And please: No ``` code ``` blocks.",
 	template_command = "{{command}}",
 }
 
