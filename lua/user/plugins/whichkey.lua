@@ -155,6 +155,7 @@ local normal_mappings = {
 		b = { "<cmd>GpPrepend<cr>", "Prepend" },
 		e = { "<cmd>GpEnew<cr>", "Enew" },
 		p = { "<cmd>GpPopup<cr>", "Popup" },
+		s = { "<cmd>GpStop<cr>", "Stop" },
 	},
 	["<leader>"] = {
 		["<leader>x"] = { "<cmd>w! | source %<cr>", "Save and source" },

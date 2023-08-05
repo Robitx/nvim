@@ -16,6 +16,14 @@ local config = {
 		--     -- call GpChatNew command in range mode on whole buffer
 		--     vim.api.nvim_command("%" .. plugin.config.cmd_prefix .. "ChatNew")
 		-- end,
+
+		-- example of adding command which explains the selected code
+		Explain = function(gp, params)
+			local template = "I have the following code from {{filename}}:\n\n"
+				.. "```{{filetype}}\n{{selection}}\n```\n\n"
+				.. "Please respond by explaining the code above."
+			gp.Prompt(params, gp.Target.popup, nil, gp.config.command_model, template, gp.config.chat_system_prompt)
+		end,
 	},
 
 	-- directory for storing chat files
@@ -45,7 +53,7 @@ local config = {
 	-- command prompt prefix for asking user for input
 	command_prompt_prefix = "🤖 ~ ",
 	-- command model (string with model name or table with model name and parameters)
-	command_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
+	command_model = { model = "gpt-3.5-turbo-16k", temperature = 1.1, top_p = 1 },
 	-- command system prompt
 	command_system_prompt = "You are an AI that strictly generates just the formated final code.",
 
