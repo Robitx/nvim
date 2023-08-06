@@ -148,6 +148,7 @@ local normal_mappings = {
 	},
 	["<C-g>"] = {
 		c = { "<cmd>GpChatNew<cr>", "New Chat" },
+		t = { "<cmd>GpChatToggle<cr>", "Toggle Popup Chat" },
 		f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
 
 		r = { "<cmd>GpRewrite<cr>", "Rewrite" },
@@ -300,6 +301,7 @@ local visual_mappings = {
 	},
 	["<C-g>"] = {
 		c = { ":<C-u>'<,'>GpChatNew<cr>", "Visual Chat New" },
+		t = { ":<C-u>'<,'>GpChatToggle<cr>", "Visual Popup Chat" },
 
 		r = { ":<C-u>'<,'>GpRewrite<cr>", "Visual Rewrite" },
 		a = { ":<C-u>'<,'>GpAppend<cr>", "Visual Append" },
@@ -325,6 +327,7 @@ local visual_opts = {
 local insert_mappings = {
 	["<C-g>"] = {
 		c = { "<cmd>GpChatNew<cr>", "New Chat" },
+		t = { "<cmd>GpChatToggle<cr>", "Toggle Popup Chat" },
 		f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
 
 		r = { "<cmd>GpRewrite<cr>", "Rewrite" },
