@@ -157,6 +157,8 @@ local normal_mappings = {
 		e = { "<cmd>GpEnew<cr>", "Enew" },
 		p = { "<cmd>GpPopup<cr>", "Popup" },
 		s = { "<cmd>GpStop<cr>", "Stop" },
+
+		w = { "<cmd>GpWhisper<cr>", "Whisper" },
 	},
 	["<leader>"] = {
 		["<leader>x"] = { "<cmd>w! | source %<cr>", "Save and source" },
@@ -308,6 +310,8 @@ local visual_mappings = {
 		b = { ":<C-u>'<,'>GpPrepend<cr>", "Visual Prepend" },
 		e = { ":<C-u>'<,'>GpEnew<cr>", "Visual Enew" },
 		p = { ":<C-u>'<,'>GpPopup<cr>", "Visual Popup" },
+
+		w = { ":<C-u>'<,'>GpWhisper<cr>", "Whisper" },
 	},
 	["p"] = { '"_dP', "Paste" },
 	["<"] = { "<gv", "Shift Left" },
@@ -335,6 +339,8 @@ local insert_mappings = {
 		b = { "<cmd>GpPrepend<cr>", "Prepend" },
 		e = { "<cmd>GpEnew<cr>", "Enew" },
 		p = { "<cmd>GpPopup<cr>", "Popup" },
+
+		w = { "<cmd>GpWhisper<cr>", "Whisper" },
 	},
 }
 
