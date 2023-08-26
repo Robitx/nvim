@@ -159,6 +159,11 @@ local normal_mappings = {
 		s = { "<cmd>GpStop<cr>", "Stop" },
 
 		w = { "<cmd>GpWhisper<cr>", "Whisper" },
+		R = { "<cmd>GpWhisperRewrite<cr>", "Whisper Inline Rewrite" },
+		A = { "<cmd>GpWhisperAppend<cr>", "Whisper Append" },
+		B = { "<cmd>GpWhisperPrepend<cr>", "Whisper Prepend" },
+		E = { "<cmd>GpWhisperEnew<cr>", "Whisper Enew" },
+		P = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
 	},
 	["<leader>"] = {
 		["<leader>x"] = { "<cmd>w! | source %<cr>", "Save and source" },
@@ -312,6 +317,11 @@ local visual_mappings = {
 		p = { ":<C-u>'<,'>GpPopup<cr>", "Visual Popup" },
 
 		w = { ":<C-u>'<,'>GpWhisper<cr>", "Whisper" },
+		R = { ":<C-u>'<,'>GpwhisperRewrite<cr>", "Whisper Visual Rewrite" },
+		A = { ":<C-u>'<,'>GpwhisperAppend<cr>", "Whisper Visual Append" },
+		B = { ":<C-u>'<,'>GpwhisperPrepend<cr>", "Whisper Visual Prepend" },
+		E = { ":<C-u>'<,'>GpwhisperEnew<cr>", "Whisper Visual Enew" },
+		P = { ":<C-u>'<,'>GpwhisperPopup<cr>", "Whisper Visual Popup" },
 	},
 	["p"] = { '"_dP', "Paste" },
 	["<"] = { "<gv", "Shift Left" },
@@ -341,6 +351,11 @@ local insert_mappings = {
 		p = { "<cmd>GpPopup<cr>", "Popup" },
 
 		w = { "<cmd>GpWhisper<cr>", "Whisper" },
+		R = { "<cmd>GpWhisperRewrite<cr>", "Whisper Inline Rewrite" },
+		A = { "<cmd>GpWhisperAppend<cr>", "Whisper Append" },
+		B = { "<cmd>GpWhisperPrepend<cr>", "Whisper Prepend" },
+		E = { "<cmd>GpWhisperEnew<cr>", "Whisper Enew" },
+		P = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
 	},
 }
 
