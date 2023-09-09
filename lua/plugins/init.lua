@@ -33,12 +33,6 @@ return {
 		end,
 	},
 
-	-- -- DAP
-	-- { "mfussenegger/nvim-dap" },
-	-- { "rcarriga/nvim-dap-ui" },
-	-- { "theHamsta/nvim-dap-virtual-text" },
-	-- { "ravenxrz/DAPInstall.nvim" },
-
 	-- TODO:
 	-- use { 'monaqa/dial.nvim' }
 	-- use { 'simrat39/symbols-outline.nvim' }
