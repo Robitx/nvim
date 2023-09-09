@@ -13,7 +13,7 @@ local config = function()
 		},
 		highlights = {
 			fill = {
-				fg = { attribute = "fg", highlight = "#ff0000" },
+				fg = { attribute = "fg", highlight = "TabLine" },
 				bg = { attribute = "bg", highlight = "TabLine" },
 			},
 			background = {
@@ -96,6 +96,6 @@ end
 return {
 	"akinsho/bufferline.nvim",
 	version = "*",
-	dependencies = "kyazdani42/nvim-web-devicons",
+	dependencies = "nvim-tree/nvim-web-devicons",
 	config = config,
 }
