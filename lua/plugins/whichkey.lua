@@ -27,6 +27,10 @@ keymap("i", "jk", "<ESC>", opts)
 -- Plugins --
 
 -- DAP
+
+-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: See last session result." })
+
 -- keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
 -- keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
 -- keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
