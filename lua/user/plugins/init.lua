@@ -10,7 +10,6 @@ return {
 	{ "kyazdani42/nvim-web-devicons" },
 	{ "kyazdani42/nvim-tree.lua" },
 
-	{ "akinsho/bufferline.nvim", tag = "v2.12.0", dependencies = "kyazdani42/nvim-web-devicons" },
 	{ "moll/vim-bbye" },
 	{ "akinsho/toggleterm.nvim" },
 
