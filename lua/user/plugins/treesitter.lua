@@ -9,6 +9,7 @@ local config = function()
 
 		-- Add languages to be installed here that you want installed for treesitter
 		ensure_installed = {
+			"bash",
 			"c",
 			"cpp",
 			"go",
