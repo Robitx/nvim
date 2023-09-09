@@ -3,9 +3,6 @@ return {
 	-- Useful lua functions used by lots of plugins
 	{ "nvim-lua/plenary.nvim" },
 
-	-- Autopairs, integrates with both cmp and treesitter
-	{ "windwp/nvim-autopairs" },
-
 	{ "moll/vim-bbye" },
 
 	-- Plugin to read .evn files
