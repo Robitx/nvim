@@ -13,13 +13,6 @@ return {
 	{ "kristijanhusak/vim-dadbod-ui" },
 	{ "kristijanhusak/vim-dadbod-completion" },
 
-	-- LSP
-	{ "williamboman/mason.nvim" },
-	{ "williamboman/mason-lspconfig.nvim" },
-	{ "neovim/nvim-lspconfig" }, -- enable LSP
-	-- { "williamboman/nvim-lsp-installer" }, -- simple to use language server installer
-	{ "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
-
 	{
 		"folke/trouble.nvim",
 		config = function()
