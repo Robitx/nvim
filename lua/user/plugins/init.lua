@@ -6,10 +6,6 @@ return {
 	-- Autopairs, integrates with both cmp and treesitter
 	{ "windwp/nvim-autopairs" },
 
-	-- File explorer
-	{ "kyazdani42/nvim-web-devicons" },
-	{ "kyazdani42/nvim-tree.lua" },
-
 	{ "moll/vim-bbye" },
 	{ "akinsho/toggleterm.nvim" },
 
