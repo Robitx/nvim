@@ -35,7 +35,6 @@ return {
 	{ "neovim/nvim-lspconfig" }, -- enable LSP
 	-- { "williamboman/nvim-lsp-installer" }, -- simple to use language server installer
 	{ "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
-	{ "RRethy/vim-illuminate" },
 
 	{
 		"folke/trouble.nvim",
