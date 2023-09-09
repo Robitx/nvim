@@ -14,7 +14,6 @@ return {
 	{ "moll/vim-bbye" },
 	{ "nvim-lualine/lualine.nvim" },
 	{ "akinsho/toggleterm.nvim" },
-	{ "ahmedkhalf/project.nvim" },
 
 	-- Plugin to read .evn files
 	{ "tpope/vim-dotenv" },

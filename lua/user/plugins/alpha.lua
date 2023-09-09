@@ -11,7 +11,6 @@ local config = function ()
     dashboard.section.buttons.val = {
       dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
       dashboard.button("e", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("p", " " .. " Find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
       dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
       dashboard.button("t", " " .. " Find text", ":Telescope live_grep <CR>"),
       dashboard.button("s", " " .. " Settings", ":e ~/.config/nvim/init.lua <CR>"),

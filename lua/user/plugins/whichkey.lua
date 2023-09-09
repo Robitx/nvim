@@ -191,7 +191,6 @@ local normal_mappings = {
 				"Buffers",
 			},
 			t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-			p = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 		},
 
 		p = {
