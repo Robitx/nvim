@@ -4,6 +4,7 @@ local config = function()
 		return
 	end
 
+	---@diagnostic disable-next-line missing-fields
 	tsc.setup({
 
 		-- Add languages to be installed here that you want installed for treesitter

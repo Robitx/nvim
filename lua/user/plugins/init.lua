@@ -33,11 +33,6 @@ return {
 		end,
 	},
 
-	-- Git
-	{
-		"lewis6991/gitsigns.nvim",
-	},
-
 	-- -- DAP
 	-- { "mfussenegger/nvim-dap" },
 	-- { "rcarriga/nvim-dap-ui" },
