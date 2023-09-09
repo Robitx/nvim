@@ -7,7 +7,6 @@ return {
 	{ "windwp/nvim-autopairs" },
 
 	{ "moll/vim-bbye" },
-	{ "akinsho/toggleterm.nvim" },
 
 	-- Plugin to read .evn files
 	{ "tpope/vim-dotenv" },
