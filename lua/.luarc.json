@@ -50,6 +50,12 @@
         "/zaloha/pgit/gp.nvim/lua",
         "/home/tibor/.local/share/nvim/lazy/cmp_luasnip/lua",
         "/home/tibor/.config/nvim/lua",
-        "${3rd}/luv/library"
+        "${3rd}/luv/library",
+        "${3rd}/lfs/library",
+        "${3rd}/luassert/library"
+    ],
+    "diagnostics.globals": [
+        "vim",
+        "lfs"
     ]
 }
