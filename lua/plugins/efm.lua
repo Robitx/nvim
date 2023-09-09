@@ -1,11 +1,37 @@
 local config = function()
 	local eslint = require("efmls-configs.linters.eslint")
 	local prettier = require("efmls-configs.formatters.prettier")
-	local stylua = require("efmls-configs.formatters.stylua")
+	local stylelint = require("efmls-configs.linters.stylelint")
 
 	local languages = {
 		typescript = { eslint, prettier },
-		lua = { stylua },
+		javascript = { eslint, prettier },
+		html = { prettier },
+		css = { prettier, stylelint },
+		scss = { prettier, stylelint },
+		sass = { prettier, stylelint },
+		less = { prettier, stylelint },
+		markdown = {
+			prettier,
+		},
+		lua = { require("efmls-configs.formatters.stylua") },
+		go = {
+			require("efmls-configs.linters.staticcheck"),
+			require("efmls-configs.formatters.golines"),
+			require("efmls-configs.linters.go_revive"),
+			require("efmls-configs.formatters.goimports"),
+		},
+		python = {
+			require("efmls-configs.formatters.black"),
+			require("efmls-configs.linters.flake8"),
+		},
+		dockerfile = {
+			require("efmls-configs.linters.hadolint"),
+		},
+		json = {
+			require("efmls-configs.formatters.jq"),
+			require("efmls-configs.linters.jq"),
+		},
 	}
 
 	local efmls_config = {
