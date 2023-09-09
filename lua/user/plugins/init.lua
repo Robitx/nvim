@@ -12,7 +12,6 @@ return {
 
 	{ "akinsho/bufferline.nvim", tag = "v2.12.0", dependencies = "kyazdani42/nvim-web-devicons" },
 	{ "moll/vim-bbye" },
-	{ "nvim-lualine/lualine.nvim" },
 	{ "akinsho/toggleterm.nvim" },
 
 	-- Plugin to read .evn files
