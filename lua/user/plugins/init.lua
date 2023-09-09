@@ -55,10 +55,6 @@ return {
 		end,
 	},
 
-	-- Telescope
-	{ "nvim-telescope/telescope.nvim" },
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-
 	{
 		"phaazon/hop.nvim",
 		branch = "v2", -- optional but strongly recommended
