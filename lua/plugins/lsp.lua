@@ -4,7 +4,6 @@ local config = function()
 		return
 	end
 
-	require("lsp.mason")
 	require("lsp.handlers").setup()
 	require("lsp.null-ls")
 end
@@ -13,7 +12,7 @@ return {
 	-- LSP Configuration & Plugins
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		-- Automatically install LSPs to stdpath for neovim
+		-- automatically install lsps to stdpath for neovim
 		{ "williamboman/mason.nvim" },
 		{ "williamboman/mason-lspconfig.nvim" },
 
