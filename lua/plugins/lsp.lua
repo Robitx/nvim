@@ -4,9 +4,9 @@ local config = function()
 		return
 	end
 
-	require("user.lsp.mason")
-	require("user.lsp.handlers").setup()
-	require("user.lsp.null-ls")
+	require("lsp.mason")
+	require("lsp.handlers").setup()
+	require("lsp.null-ls")
 end
 
 return {

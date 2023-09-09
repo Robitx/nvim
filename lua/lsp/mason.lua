@@ -63,16 +63,16 @@ local servers = {
 
 --
 local custom_configs = {
-	lua_ls = require("user.lsp.settings.lua_ls"),
-	gopls = require("user.lsp.settings.gopls"),
-	pyright = require("user.lsp.settings.pyright"),
+	lua_ls = require("lsp.settings.lua_ls"),
+	gopls = require("lsp.settings.gopls"),
+	pyright = require("lsp.settings.pyright"),
 }
 
 local opts = {}
 for _, server in pairs(servers) do
 	opts = {
-		on_attach = require("user.lsp.handlers").on_attach,
-		capabilities = require("user.lsp.handlers").capabilities,
+		on_attach = require("lsp.handlers").on_attach,
+		capabilities = require("lsp.handlers").capabilities,
 		-- print capabilities
 	}
 	-- print all options
