@@ -50,6 +50,7 @@ local config = function()
 	})
 
 	local servers = {
+		"efm",
 		"clangd",
 		"lua_ls",
 		"cssls",
@@ -94,7 +95,7 @@ return {
 
 	dependencies = {
 		-- automatically install lsps to stdpath for neovim
-		{ "williamboman/mason-lspconfig.nvim" },
+		"williamboman/mason-lspconfig.nvim",
 	},
 	config = config,
 }
