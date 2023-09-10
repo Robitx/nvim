@@ -146,15 +146,14 @@ local setup = {
 
 -- NORMAL mode mappings
 local normal_mappings = {
+	["<M-l>"] = { ":bnext<CR>", "Next buffer" },
+	["<M-h>"] = { ":bprevious<CR>", "Previous buffer" },
 	["<C-h>"] = { "<C-w>h", "Move to left window" },
 	["<C-j>"] = { "<C-w>j", "Move to bottom window" },
 	["<C-k>"] = { "<C-w>k", "Move to top window" },
 	["<C-l>"] = { "<C-w>l", "Move to right window" },
-	["<M-l>"] = { ":bnext<CR>", "Next buffer" },
-	["<M-h>"] = { ":bprevious<CR>", "Previous buffer" },
 	["<C-w>"] = {
 		["e"] = { "<cmd>enew<cr>", "New File in current window" },
-		["p"] = { "<cmd>NeoZoomToggle<cr>", "Pop up window Toggle" },
 		["<Up>"] = { "<cmd>resize -2<cr>", "Decrease window height" },
 		["<Down>"] = { "<cmd>resize +2<cr>", "Increase window height" },
 		["<Left>"] = { "<cmd>vertical resize -2<cr>", "Decrease window width" },
@@ -180,16 +179,16 @@ local normal_mappings = {
 		P = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
 	},
 	["<leader>"] = {
-		["<leader>x"] = { "<cmd>w! | source %<cr>", "Save and source" },
+		s = { "<cmd>w! | source %<cr>", "Save and source" },
+		x = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+		w = { "<cmd>w!<CR>", "Save" },
+		W = { "<cmd>w !sudo tee %<CR>", "Sudo Save" },
+		e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+		h = { "<cmd>nohlsearch<CR>", "No Highlight" },
+		Q = { "<cmd>q!<CR>", "Quit" },
 		["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "Toggle comment" },
 
-		["A"] = { "<cmd>Alpha<cr>", "Alpha" },
-		["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-		["w"] = { "<cmd>w!<CR>", "Save" },
-		["W"] = { "<cmd>w !sudo tee %<CR>", "Sudo Save" },
-		["Q"] = { "<cmd>q!<CR>", "Quit" },
-		["x"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-		["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+		["A"] = { "<cmd>Alpha<cr>", "Alpha welcome screen" },
 		f = {
 			name = "Telescope",
 			F = {
@@ -205,15 +204,13 @@ local normal_mappings = {
 				"Buffers",
 			},
 			t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-		},
-
-		p = {
-			name = "Packer",
-			c = { "<cmd>PackerCompile<cr>", "Compile" },
-			i = { "<cmd>PackerInstall<cr>", "Install" },
-			s = { "<cmd>PackerSync<cr>", "Sync" },
-			S = { "<cmd>PackerStatus<cr>", "Status" },
-			u = { "<cmd>PackerUpdate<cr>", "Update" },
+			s = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+			h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+			M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+			r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+			R = { "<cmd>Telescope registers<cr>", "Registers" },
+			k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+			c = { "<cmd>Telescope commands<cr>", "Commands" },
 		},
 
 		g = {
@@ -271,17 +268,6 @@ local normal_mappings = {
 				"Workspace Symbols",
 			},
 		},
-		s = {
-			name = "Search",
-			b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-			c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-			h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-			M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-			r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-			R = { "<cmd>Telescope registers<cr>", "Registers" },
-			k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-			C = { "<cmd>Telescope commands<cr>", "Commands" },
-		},
 
 		c = {
 			name = "Copilot",
@@ -290,10 +276,6 @@ local normal_mappings = {
 
 		t = {
 			name = "Terminal",
-			n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-			u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-			t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-			p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
 			f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
 			h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
 			v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
