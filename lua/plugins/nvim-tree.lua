@@ -8,7 +8,13 @@ local config = function()
 		local api = require("nvim-tree.api")
 
 		local function opts(desc)
-			return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+			return {
+				desc = "nvim-tree: " .. desc,
+				buffer = bufnr,
+				noremap = true,
+				silent = true,
+				nowait = true,
+			}
 		end
 
 		-- Default mappings. Feel free to modify or remove as you wish.
@@ -137,7 +143,8 @@ end
 return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
-	lazy = false,
+	lazy = true,
+	cmd = "NvimTreeToggle",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
