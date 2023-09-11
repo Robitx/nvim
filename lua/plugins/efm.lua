@@ -32,6 +32,13 @@ local config = function()
 			require("efmls-configs.formatters.jq"),
 			require("efmls-configs.linters.jq"),
 		},
+		bash = {
+			require("efmls-configs.linters.shellcheck"),
+			require("efmls-configs.formatters.beautysh"),
+		},
+		zsh = {
+			require("efmls-configs.formatters.beautysh"),
+		},
 	}
 
 	local efmls_config = {
