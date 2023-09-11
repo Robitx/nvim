@@ -66,7 +66,7 @@ local config = {
 
 return {
 	"robitx/gp.nvim",
-	dev = true,
+	dev = not os.getenv("RUNNING_IN_DOCKER"),
 
 	config = function()
 		require("gp").setup(config)
