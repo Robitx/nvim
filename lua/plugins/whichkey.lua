@@ -146,12 +146,17 @@ local setup = {
 
 -- NORMAL mode mappings
 local normal_mappings = {
-	["<M-l>"] = { ":bnext<CR>", "Next buffer" },
-	["<M-h>"] = { ":bprevious<CR>", "Previous buffer" },
-	["<C-h>"] = { "<C-w>h", "Move to left window" },
-	["<C-j>"] = { "<C-w>j", "Move to bottom window" },
-	["<C-k>"] = { "<C-w>k", "Move to top window" },
-	["<C-l>"] = { "<C-w>l", "Move to right window" },
+	["<M-n>"] = { ":bnext<CR>", "Next buffer" },
+	["<M-p>"] = { ":bprevious<CR>", "Previous buffer" },
+	["<M-q>"] = { ":bdelete<CR>", "Close buffer" },
+	["<M-h>"] = { ":TmuxResizeLeft<CR>", "Resize left" },
+	["<M-j>"] = { ":TmuxResizeDown<CR>", "Resize down" },
+	["<M-k>"] = { ":TmuxResizeUp<CR>", "Resize up" },
+	["<M-l>"] = { ":TmuxResizeRight<CR>", "Resize right" },
+	["<C-h>"] = { ":TmuxNavigateLeft<CR>", "Move to left window" },
+	["<C-j>"] = { ":TmuxNavigateDown<CR>", "Move to bottom window" },
+	["<C-k>"] = { ":TmuxNavigateUp<CR>", "Move to top window" },
+	["<C-l>"] = { ":TmuxNavigateRight<CR>", "Move to right window" },
 	["<C-w>"] = {
 		["e"] = { "<cmd>enew<cr>", "New File in current window" },
 		["<Up>"] = { "<cmd>resize -2<cr>", "Decrease window height" },
