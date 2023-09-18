@@ -71,7 +71,7 @@ local config = function()
 			["<C-j>"] = cmp.mapping.select_next_item(),
 			["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 			["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-			["<C-Space>"] = cmp.mapping(function()
+			["<M-Space>"] = cmp.mapping(function()
 				require("copilot.suggestion").dismiss()
 				cmp.complete()
 			end, { "i", "c" }),
