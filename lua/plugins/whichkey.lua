@@ -184,6 +184,10 @@ local normal_mappings = {
 		P = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
 	},
 	["<leader>"] = {
+		b = {
+			"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+			"Buffers",
+		},
 		s = { "<cmd>w! | source %<cr>", "Save and source" },
 		x = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 		w = { "<cmd>w!<CR>", "Save" },
