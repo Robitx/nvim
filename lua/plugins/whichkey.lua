@@ -146,8 +146,8 @@ local setup = {
 
 -- NORMAL mode mappings
 local normal_mappings = {
-	["<M-n>"] = { ":bnext<CR>", "Next buffer" },
-	["<M-p>"] = { ":bprevious<CR>", "Previous buffer" },
+	["<TAB>"] = { ":bnext<CR>", "Next buffer" },
+	["<S-TAB>"] = { ":bprevious<CR>", "Previous buffer" },
 	["<M-q>"] = { ":bdelete<CR>", "Close buffer" },
 	["<M-h>"] = { ":TmuxResizeLeft<CR>", "Resize left" },
 	["<M-j>"] = { ":TmuxResizeDown<CR>", "Resize down" },
