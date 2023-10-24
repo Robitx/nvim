@@ -1,23 +1,31 @@
 local config = function()
-	require("indent_blankline").setup({
-		char = "▏",
-		show_trailing_blankline_indent = false,
-		show_first_indent_level = true,
-		use_treesitter = true,
-		show_current_context = true,
-		buftype_exclude = { "terminal", "nofile" },
-		filetype_exclude = {
-			"help",
-			"packer",
-			"NvimTree",
+	require("ibl").setup({
+		indent = {
+			char = "▏",
+		},
+        scope = {
+            enabled = true,
+        },
+		exclude = {
+			filetypes = {
+				"help",
+				"packer",
+				"NvimTree",
+			},
+
+			buftypes = {
+				"terminal",
+				"nofile",
+			},
 		},
 	})
+
+	local hooks = require("ibl.hooks")
+	hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
 end
 
 return {
 	"lukas-reineke/indent-blankline.nvim",
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter",
-	},
+	main = "ibl",
 	config = config,
 }
