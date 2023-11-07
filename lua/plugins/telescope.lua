@@ -8,6 +8,17 @@ local config = function()
 
 	telescope.setup({
 		defaults = {
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+				"--hidden",
+				"--glob=!{.git,node_modules}/*",
+			},
 
 			prompt_prefix = " ",
 			selection_caret = " ",
@@ -31,6 +42,14 @@ local config = function()
 					["<C-u>"] = false,
 					["<C-d>"] = false,
 				},
+			},
+		},
+		pickers = {
+			live_grep = {
+				hidden = true,
+			},
+			find_files = {
+				hidden = true,
 			},
 		},
 	})
