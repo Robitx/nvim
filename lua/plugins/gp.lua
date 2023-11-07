@@ -3,6 +3,9 @@ local config = {
 	chat_dir = "/zaloha/gp_chats",
 	-- explicitly confirm deletion of a chat file
 	chat_confirm_delete = false,
+
+	chat_model = { model = "gpt-4-1106-preview", temperature = 1.1, top_p = 1 },
+	command_model = { model = "gpt-4-1106-preview", temperature = 1.1, top_p = 1 },
 }
 
 return {
