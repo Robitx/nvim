@@ -16,6 +16,10 @@ return {
 	config = function()
 		require("lint").linters_by_ft = linters
 
+		require("lint").linters.luacheck.args = {
+			args = { "--globals", "vim" },
+		}
+
 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 			callback = function()
 				require("lint").try_lint()
