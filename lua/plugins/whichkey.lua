@@ -164,25 +164,6 @@ local normal_mappings = {
 		["<Left>"] = { "<cmd>vertical resize -2<cr>", "Decrease window width" },
 		["<Right>"] = { "<cmd>vertical resize +2<cr>", "Increase window width" },
 	},
-	["<C-g>"] = {
-		c = { "<cmd>GpChatNew<cr>", "New Chat" },
-		t = { "<cmd>GpChatToggle<cr>", "Toggle Popup Chat" },
-		f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
-
-		r = { "<cmd>GpRewrite<cr>", "Rewrite" },
-		a = { "<cmd>GpAppend<cr>", "Append" },
-		b = { "<cmd>GpPrepend<cr>", "Prepend" },
-		e = { "<cmd>GpEnew<cr>", "Enew" },
-		p = { "<cmd>GpPopup<cr>", "Popup" },
-		s = { "<cmd>GpStop<cr>", "Stop" },
-
-		w = { "<cmd>GpWhisper<cr>", "Whisper" },
-		R = { "<cmd>GpWhisperRewrite<cr>", "Whisper Inline Rewrite" },
-		A = { "<cmd>GpWhisperAppend<cr>", "Whisper Append" },
-		B = { "<cmd>GpWhisperPrepend<cr>", "Whisper Prepend" },
-		E = { "<cmd>GpWhisperEnew<cr>", "Whisper Enew" },
-		P = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
-	},
 	["<leader>"] = {
 		b = {
 			"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
@@ -256,7 +237,7 @@ local normal_mappings = {
 				"<cmd>Telescope lsp_workspace_diagnostics<cr>",
 				"Workspace Diagnostics",
 			},
-			f = { "<cmd>lua require('conform').format()<cr>", "Format" },
+			f = { "<cmd>lua require('conform').format({async = true})<cr>", "Format" },
 			h = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
 			i = { "<cmd>LspInfo<cr>", "Info" },
 			I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
@@ -310,23 +291,6 @@ local visual_mappings = {
 			"Toggle Comment",
 		},
 	},
-	["<C-g>"] = {
-		c = { ":<C-u>'<,'>GpChatNew<cr>", "Visual Chat New" },
-		t = { ":<C-u>'<,'>GpChatToggle<cr>", "Visual Popup Chat" },
-
-		r = { ":<C-u>'<,'>GpRewrite<cr>", "Visual Rewrite" },
-		a = { ":<C-u>'<,'>GpAppend<cr>", "Visual Append" },
-		b = { ":<C-u>'<,'>GpPrepend<cr>", "Visual Prepend" },
-		e = { ":<C-u>'<,'>GpEnew<cr>", "Visual Enew" },
-		p = { ":<C-u>'<,'>GpPopup<cr>", "Visual Popup" },
-
-		w = { ":<C-u>'<,'>GpWhisper<cr>", "Whisper" },
-		R = { ":<C-u>'<,'>GpWhisperRewrite<cr>", "Whisper Visual Rewrite" },
-		A = { ":<C-u>'<,'>GpWhisperAppend<cr>", "Whisper Visual Append" },
-		B = { ":<C-u>'<,'>GpWhisperPrepend<cr>", "Whisper Visual Prepend" },
-		E = { ":<C-u>'<,'>GpWhisperEnew<cr>", "Whisper Visual Enew" },
-		P = { ":<C-u>'<,'>GpWhisperPopup<cr>", "Whisper Visual Popup" },
-	},
 	["p"] = { '"_dP', "Paste" },
 	["<"] = { "<gv", "Shift Left" },
 	[">"] = { ">gv", "Shift Right" },
@@ -343,24 +307,6 @@ local visual_opts = {
 
 -- INSERT mode mappings
 local insert_mappings = {
-	["<C-g>"] = {
-		c = { "<cmd>GpChatNew<cr>", "New Chat" },
-		t = { "<cmd>GpChatToggle<cr>", "Toggle Popup Chat" },
-		f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
-
-		r = { "<cmd>GpRewrite<cr>", "Rewrite" },
-		a = { "<cmd>GpAppend<cr>", "Append" },
-		b = { "<cmd>GpPrepend<cr>", "Prepend" },
-		e = { "<cmd>GpEnew<cr>", "Enew" },
-		p = { "<cmd>GpPopup<cr>", "Popup" },
-
-		w = { "<cmd>GpWhisper<cr>", "Whisper" },
-		R = { "<cmd>GpWhisperRewrite<cr>", "Whisper Inline Rewrite" },
-		A = { "<cmd>GpWhisperAppend<cr>", "Whisper Append" },
-		B = { "<cmd>GpWhisperPrepend<cr>", "Whisper Prepend" },
-		E = { "<cmd>GpWhisperEnew<cr>", "Whisper Enew" },
-		P = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
-	},
 }
 
 local insert_opts = {
