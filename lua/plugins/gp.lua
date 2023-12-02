@@ -5,11 +5,18 @@ local config = {
 	chat_confirm_delete = false,
 
 	hooks = {
+		Joke = function(gp, params)
+			local template = "Tell me random joke using pseudo code."
+			local agent = gp.get_command_agent()
+			gp.Prompt(params, gp.Target.vnew, nil, agent.model, template, agent.system_prompt)
+		end,
+
 		UnitTests = function(gp, params)
 			local template = "I have the following code from {{filename}}:\n\n"
 				.. "```{{filetype}}\n{{selection}}\n```\n\n"
 				.. "Please respond by writing table driven unit tests for the code above."
-			gp.Prompt(params, gp.Target.enew, nil, nil, template, gp.config.command_system_prompt)
+			local agent = gp.get_command_agent()
+			gp.Prompt(params, gp.Target.vnew, nil, agent.model, template, agent.system_prompt)
 		end,
 
 		Translator = function(gp, params)
@@ -27,7 +34,6 @@ local config = {
 			gp.cmd.ChatNew(params, nil, chat_system_prompt)
 		end,
 	},
-
 }
 
 local register_shortcuts = function()
@@ -37,31 +43,43 @@ local register_shortcuts = function()
 		-- ...
 		["<C-g>"] = {
 			c = { ":<C-u>'<,'>GpChatNew<cr>", "Visual Chat New" },
-			v = { ":<C-u>'<,'>GpChatPaste<cr>", "Visual Chat Paste" },
+			p = { ":<C-u>'<,'>GpChatPaste<cr>", "Visual Chat Paste" },
 			t = { ":<C-u>'<,'>GpChatToggle<cr>", "Visual Toggle Chat" },
 
-			["<C-x>"] = { ":'<,'>GpChatNew split<CR>", "Visual Chat New split" },
-			["<C-v>"] = { ":'<,'>GpChatNew vsplit<CR>", "Visual Chat New vsplit" },
-			["<C-t>"] = { ":'<,'>GpChatNew tabnew<CR>", "Visual Chat New tabnew" },
+			["<C-x>"] = { ":<C-u>'<,'>GpChatNew split<cr>", "Visual Chat New split" },
+			["<C-v>"] = { ":<C-u>'<,'>GpChatNew vsplit<cr>", "Visual Chat New vsplit" },
+			["<C-t>"] = { ":<C-u>'<,'>GpChatNew tabnew<cr>", "Visual Chat New tabnew" },
 
 			r = { ":<C-u>'<,'>GpRewrite<cr>", "Visual Rewrite" },
-			a = { ":<C-u>'<,'>GpAppend<cr>", "Visual Append" },
-			b = { ":<C-u>'<,'>GpPrepend<cr>", "Visual Prepend" },
-			e = { ":<C-u>'<,'>GpEnew<cr>", "Visual Enew" },
-			p = { ":<C-u>'<,'>GpPopup<cr>", "Visual Popup" },
+			a = { ":<C-u>'<,'>GpAppend<cr>", "Visual Append (after)" },
+			b = { ":<C-u>'<,'>GpPrepend<cr>", "Visual Prepend (before)" },
+			i = { ":<C-u>'<,'>GpImplement<cr>", "Implement selection" },
 
-			x = { ":<C-u>'<,'>GpContext<cr>", "Visual Toggle Context" },
+			g = {
+				name = "generate into new ..",
+				p = { ":<C-u>'<,'>GpPopup<cr>", "Visual Popup" },
+				e = { ":<C-u>'<,'>GpEnew<cr>", "Visual GpEnew" },
+				n = { ":<C-u>'<,'>GpNew<cr>", "Visual GpNew" },
+				v = { ":<C-u>'<,'>GpVnew<cr>", "Visual GpVnew" },
+				t = { ":<C-u>'<,'>GpTabnew<cr>", "Visual GpTabnew" },
+			},
 
 			n = { "<cmd>GpNextAgent<cr>", "Next Agent" },
-			s = { "<cmd>GpStop<cr>", "Stop" },
+			s = { "<cmd>GpStop<cr>", "GpStop" },
+			x = { ":<C-u>'<,'>GpContext<cr>", "Visual GpContext" },
 
-			-- optional Whisper commands
-			w = { ":<C-u>'<,'>GpWhisper<cr>", "Whisper" },
-			R = { ":<C-u>'<,'>GpWhisperRewrite<cr>", "Whisper Visual Rewrite" },
-			A = { ":<C-u>'<,'>GpWhisperAppend<cr>", "Whisper Visual Append" },
-			B = { ":<C-u>'<,'>GpWhisperPrepend<cr>", "Whisper Visual Prepend" },
-			E = { ":<C-u>'<,'>GpWhisperEnew<cr>", "Whisper Visual Enew" },
-			P = { ":<C-u>'<,'>GpWhisperPopup<cr>", "Whisper Visual Popup" },
+			w = {
+				name = "Whisper",
+				w = { ":<C-u>'<,'>GpWhisper<cr>", "Whisper" },
+				r = { ":<C-u>'<,'>GpWhisperRewrite<cr>", "Whisper Rewrite" },
+				a = { ":<C-u>'<,'>GpWhisperAppend<cr>", "Whisper Append (after)" },
+				b = { ":<C-u>'<,'>GpWhisperPrepend<cr>", "Whisper Prepend (before)" },
+				p = { ":<C-u>'<,'>GpWhisperPopup<cr>", "Whisper Popup" },
+				e = { ":<C-u>'<,'>GpWhisperEnew<cr>", "Whisper Enew" },
+				n = { ":<C-u>'<,'>GpWhisperNew<cr>", "Whisper New" },
+				v = { ":<C-u>'<,'>GpWhisperVnew<cr>", "Whisper Vnew" },
+				t = { ":<C-u>'<,'>GpWhisperTabnew<cr>", "Whisper Tabnew" },
+			},
 		},
 		-- ...
 	}, {
@@ -86,22 +104,34 @@ local register_shortcuts = function()
 			["<C-t>"] = { "<cmd>GpChatNew tabnew<cr>", "New Chat tabnew" },
 
 			r = { "<cmd>GpRewrite<cr>", "Inline Rewrite" },
-			a = { "<cmd>GpAppend<cr>", "Append" },
-			b = { "<cmd>GpPrepend<cr>", "Prepend" },
-			e = { "<cmd>GpEnew<cr>", "Enew" },
-			p = { "<cmd>GpPopup<cr>", "Popup" },
+			a = { "<cmd>GpAppend<cr>", "Append (after)" },
+			b = { "<cmd>GpPrepend<cr>", "Prepend (before)" },
 
-			x = { "<cmd>GpContext<cr>", "Toggle Context" },
+			g = {
+				name = "generate into new ..",
+				p = { "<cmd>GpPopup<cr>", "Popup" },
+				e = { "<cmd>GpEnew<cr>", "GpEnew" },
+				n = { "<cmd>GpNew<cr>", "GpNew" },
+				v = { "<cmd>GpVnew<cr>", "GpVnew" },
+				t = { "<cmd>GpTabnew<cr>", "GpTabnew" },
+			},
+
 			n = { "<cmd>GpNextAgent<cr>", "Next Agent" },
-			s = { "<cmd>GpStop<cr>", "Stop" },
+			s = { "<cmd>GpStop<cr>", "GpStop" },
+			x = { "<cmd>GpContext<cr>", "Toggle GpContext" },
 
-			-- optional Whisper commands
-			w = { "<cmd>GpWhisper<cr>", "Whisper" },
-			R = { "<cmd>GpWhisperRewrite<cr>", "Whisper Inline Rewrite" },
-			A = { "<cmd>GpWhisperAppend<cr>", "Whisper Append" },
-			B = { "<cmd>GpWhisperPrepend<cr>", "Whisper Prepend" },
-			E = { "<cmd>GpWhisperEnew<cr>", "Whisper Enew" },
-			P = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
+			w = {
+				name = "Whisper",
+				w = { "<cmd>GpWhisper<cr>", "Whisper" },
+				r = { "<cmd>GpWhisperRewrite<cr>", "Whisper Inline Rewrite" },
+				a = { "<cmd>GpWhisperAppend<cr>", "Whisper Append (after)" },
+				b = { "<cmd>GpWhisperPrepend<cr>", "Whisper Prepend (before)" },
+				p = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
+				e = { "<cmd>GpWhisperEnew<cr>", "Whisper Enew" },
+				n = { "<cmd>GpWhisperNew<cr>", "Whisper New" },
+				v = { "<cmd>GpWhisperVnew<cr>", "Whisper Vnew" },
+				t = { "<cmd>GpWhisperTabnew<cr>", "Whisper Tabnew" },
+			},
 		},
 		-- ...
 	}, {
@@ -118,7 +148,7 @@ local register_shortcuts = function()
 		-- ...
 		["<C-g>"] = {
 			c = { "<cmd>GpChatNew<cr>", "New Chat" },
-			t = { "<cmd>GpChatToggle<cr>", "Toggle Popup Chat" },
+			t = { "<cmd>GpChatToggle<cr>", "Toggle Chat" },
 			f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
 
 			["<C-x>"] = { "<cmd>GpChatNew split<cr>", "New Chat split" },
@@ -126,22 +156,34 @@ local register_shortcuts = function()
 			["<C-t>"] = { "<cmd>GpChatNew tabnew<cr>", "New Chat tabnew" },
 
 			r = { "<cmd>GpRewrite<cr>", "Inline Rewrite" },
-			a = { "<cmd>GpAppend<cr>", "Append" },
-			b = { "<cmd>GpPrepend<cr>", "Prepend" },
-			e = { "<cmd>GpEnew<cr>", "Enew" },
-			p = { "<cmd>GpPopup<cr>", "Popup" },
+			a = { "<cmd>GpAppend<cr>", "Append (after)" },
+			b = { "<cmd>GpPrepend<cr>", "Prepend (before)" },
 
-			x = { "<cmd>GpContext<cr>", "Toggle Context" },
+			g = {
+				name = "generate into new ..",
+				p = { "<cmd>GpPopup<cr>", "Popup" },
+				e = { "<cmd>GpEnew<cr>", "GpEnew" },
+				n = { "<cmd>GpNew<cr>", "GpNew" },
+				v = { "<cmd>GpVnew<cr>", "GpVnew" },
+				t = { "<cmd>GpTabnew<cr>", "GpTabnew" },
+			},
+
+			x = { "<cmd>GpContext<cr>", "Toggle GpContext" },
+			s = { "<cmd>GpStop<cr>", "GpStop" },
 			n = { "<cmd>GpNextAgent<cr>", "Next Agent" },
-			s = { "<cmd>GpStop<cr>", "Stop" },
 
-			-- optional Whisper commands
-			w = { "<cmd>GpWhisper<cr>", "Whisper" },
-			R = { "<cmd>GpWhisperRewrite<cr>", "Whisper Inline Rewrite" },
-			A = { "<cmd>GpWhisperAppend<cr>", "Whisper Append" },
-			B = { "<cmd>GpWhisperPrepend<cr>", "Whisper Prepend" },
-			E = { "<cmd>GpWhisperEnew<cr>", "Whisper Enew" },
-			P = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
+			w = {
+				name = "Whisper",
+				w = { "<cmd>GpWhisper<cr>", "Whisper" },
+				r = { "<cmd>GpWhisperRewrite<cr>", "Whisper Inline Rewrite" },
+				a = { "<cmd>GpWhisperAppend<cr>", "Whisper Append (after)" },
+				b = { "<cmd>GpWhisperPrepend<cr>", "Whisper Prepend (before)" },
+				p = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
+				e = { "<cmd>GpWhisperEnew<cr>", "Whisper Enew" },
+				n = { "<cmd>GpWhisperNew<cr>", "Whisper New" },
+				v = { "<cmd>GpWhisperVnew<cr>", "Whisper Vnew" },
+				t = { "<cmd>GpWhisperTabnew<cr>", "Whisper Tabnew" },
+			},
 		},
 		-- ...
 	}, {
