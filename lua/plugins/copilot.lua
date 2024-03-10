@@ -33,7 +33,7 @@ local config = {
 		["."] = false,
 	},
 	-- Node version must be < 18
-	copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v16.18.1/bin/node",
+    -- copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v16.18.1/bin/node",
 	plugin_manager_path = vim.fn.stdpath("data") .. "/site/pack/packer",
 	server_opts_overrides = {
 		trace = "verbose",

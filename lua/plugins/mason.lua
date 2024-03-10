@@ -24,8 +24,22 @@ local config = function()
 		},
 	})
 
+	local servers = {
+		"efm",
+		"clangd",
+		"lua_ls",
+		"cssls",
+		"html",
+		"tsserver",
+		"pyright",
+		"bashls",
+		"jsonls",
+		"yamlls",
+		"gopls",
+	}
+
 	mason_lspconfig.setup({
-		ensure_installed = {},
+		ensure_installed = servers,
 		automatic_installation = false,
 	})
 
@@ -49,19 +63,6 @@ local config = function()
 		end,
 	})
 
-	local servers = {
-		"efm",
-		"clangd",
-		"lua_ls",
-		"cssls",
-		"html",
-		"tsserver",
-		"pyright",
-		"bashls",
-		"jsonls",
-		"yamlls",
-		"gopls",
-	}
 
 	--
 	local custom_configs = {
