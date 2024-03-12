@@ -13,6 +13,7 @@ local config = {
 		html = { "prettier" },
 		css = { "prettier" },
 		scss = { "prettier" },
+		nix = { "nixpkgs_fmt" },
 	},
 }
 

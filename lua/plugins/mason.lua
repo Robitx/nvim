@@ -16,13 +16,33 @@ local config = function()
 		return
 	end
 
+	local install = {
+        -- These are handled by nix-config:
+		-- "revive",
+		-- "vale",
+		-- "eslint_d",
+		-- "flake8",
+		-- "isort",
+		-- "black",
+		-- "goimports",
+		-- "golines",
+		-- "prettier",
+		-- "beautysh",
+		-- "luacheck",
+	}
+
 	mason.setup({
+		ensure_installed = install,
 		ui = {
 			icons = {
 				package_installed = "✓",
 			},
 		},
 	})
+
+	vim.api.nvim_create_user_command("MasonInstallAll", function()
+		vim.cmd("MasonInstall " .. table.concat(install, " "))
+	end, {})
 
 	local servers = {
 		"efm",
@@ -62,7 +82,6 @@ local config = function()
 			})
 		end,
 	})
-
 
 	--
 	local custom_configs = {
