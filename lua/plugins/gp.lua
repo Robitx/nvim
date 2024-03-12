@@ -198,7 +198,7 @@ end
 
 return {
 	"robitx/gp.nvim",
-   --  dev = not os.getenv("RUNNING_IN_DOCKER"),
+	dev = not os.getenv("RUNNING_IN_DOCKER"),
 	-- version = "v1.13.0",
 
 	config = function()

@@ -47,7 +47,7 @@
         "/home/tibor/.local/share/nvim/lazy/monokai.nvim/lua",
         "/home/tibor/.local/share/nvim/lazy/hop.nvim/lua",
         "/home/tibor/.local/share/nvim/lazy/playground/lua",
-        "/zaloha/pgit/gp.nvim/lua",
+        "/backup/pgit/gp.nvim/lua",
         "/home/tibor/.local/share/nvim/lazy/cmp_luasnip/lua",
         "/home/tibor/.config/nvim/lua",
         "${3rd}/luv/library",
