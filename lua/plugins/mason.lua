@@ -58,8 +58,12 @@ local config = function()
 		"gopls",
 	}
 
+    local lsp_install = {
+        "pyright"
+    }
+
 	mason_lspconfig.setup({
-		ensure_installed = servers,
+		ensure_installed = lsp_install,
 		automatic_installation = false,
 	})
 
