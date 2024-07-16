@@ -100,223 +100,296 @@ local setup = {
 	},
 	-- add operators that will trigger motion and text object completion
 	-- to enable all native operators, set the preset / operators plugin above
-	operators = { gc = "Comments" },
-	key_labels = {
-		-- override the label used to display some keys. It doesn't effect WK in any other way.
-		-- For example:
-		-- ["<space>"] = "SPC",
-		-- ["<cr>"] = "RET",
-		-- ["<tab>"] = "TAB",
-	},
+	-- operators = { gc = "Comments" },
 	icons = {
 		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
 		separator = "➜", -- symbol used between a key and it's label
 		group = "+", -- symbol prepended to a group
 	},
-	popup_mappings = {
+	keys = {
 		scroll_down = "<c-d>", -- binding to scroll down inside the popup
 		scroll_up = "<c-u>", -- binding to scroll up inside the popup
 	},
-	window = {
-		border = "rounded", -- none, single, double, shadow
-		position = "bottom", -- bottom, top
-		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-		winblend = 0,
-	},
+	-- window = {
+	-- 	border = "rounded", -- none, single, double, shadow
+	-- 	position = "bottom", -- bottom, top
+	-- 	margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+	-- 	padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+	-- 	winblend = 0,
+	-- },
 	layout = {
 		height = { min = 4, max = 25 }, -- min and max height of the columns
 		width = { min = 20, max = 50 }, -- min and max width of the columns
 		spacing = 3, -- spacing between columns
 		align = "left", -- align columns left, center or right
 	},
-	ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+	-- ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
+	-- hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+	desc = {
+		{ "<Plug>%(?(.*)%)?", "%1" },
+		{ "^%+", "" },
+		{ "<[cC]md>", "" },
+		{ "<[cC][rR]>", "" },
+		{ "<[sS]ilent>", "" },
+		{ "^lua%s+", "" },
+		{ "^call%s+", "" },
+		{ "^:%s*", "" },
+	},
 	show_help = true, -- show help message on the command line when the popup is visible
 	triggers = "auto", -- automatically setup triggers
 	-- triggers = {"<leader>"} -- or specify a list manually
-	triggers_blacklist = {
-		-- list of mode / prefixes that should never be hooked by WhichKey
-		-- this is mostly relevant for key maps that start with a native binding
-		-- most people should not need to change this
-		i = { "j", "k" },
-		v = { "j", "k" },
-	},
+	-- triggers_blacklist = {
+	-- 	-- list of mode / prefixes that should never be hooked by WhichKey
+	-- 	-- this is mostly relevant for key maps that start with a native binding
+	-- 	-- most people should not need to change this
+	-- 	i = { "j", "k" },
+	-- 	v = { "j", "k" },
+	-- },
 }
 
 -- NORMAL mode mappings
 local normal_mappings = {
-	["<TAB>"] = { ":bnext<CR>", "Next buffer" },
-	["<S-TAB>"] = { ":bprevious<CR>", "Previous buffer" },
-	["<M-q>"] = { ":bdelete<CR>", "Close buffer" },
-	["<M-h>"] = { ":TmuxResizeLeft<CR>", "Resize left" },
-	["<M-j>"] = { ":TmuxResizeDown<CR>", "Resize down" },
-	["<M-k>"] = { ":TmuxResizeUp<CR>", "Resize up" },
-	["<M-l>"] = { ":TmuxResizeRight<CR>", "Resize right" },
-	["<C-h>"] = { ":TmuxNavigateLeft<CR>", "Move to left window" },
-	["<C-j>"] = { ":TmuxNavigateDown<CR>", "Move to bottom window" },
-	["<C-k>"] = { ":TmuxNavigateUp<CR>", "Move to top window" },
-	["<C-l>"] = { ":TmuxNavigateRight<CR>", "Move to right window" },
-	["<C-w>"] = {
-		["e"] = { "<cmd>enew<cr>", "New File in current window" },
-		["<Up>"] = { "<cmd>resize -2<cr>", "Decrease window height" },
-		["<Down>"] = { "<cmd>resize +2<cr>", "Increase window height" },
-		["<Left>"] = { "<cmd>vertical resize -2<cr>", "Decrease window width" },
-		["<Right>"] = { "<cmd>vertical resize +2<cr>", "Increase window width" },
-	},
-	["<leader>"] = {
-		b = {
+	{
+		mode = { "n" },
+		{ "<C-h>", ":TmuxNavigateLeft<CR>", desc = "Move to left window", nowait = true, remap = false },
+		{ "<C-j>", ":TmuxNavigateDown<CR>", desc = "Move to bottom window", nowait = true, remap = false },
+		{ "<C-k>", ":TmuxNavigateUp<CR>", desc = "Move to top window", nowait = true, remap = false },
+		{ "<C-l>", ":TmuxNavigateRight<CR>", desc = "Move to right window", nowait = true, remap = false },
+		{ "<C-w><Down>", "<cmd>resize +2<cr>", desc = "Increase window height", nowait = true, remap = false },
+		{ "<C-w><Left>", "<cmd>vertical resize -2<cr>", desc = "Decrease window width", nowait = true, remap = false },
+		{ "<C-w><Right>", "<cmd>vertical resize +2<cr>", desc = "Increase window width", nowait = true, remap = false },
+		{ "<C-w><Up>", "<cmd>resize -2<cr>", desc = "Decrease window height", nowait = true, remap = false },
+		{ "<C-w>e", "<cmd>enew<cr>", desc = "New File in current window", nowait = true, remap = false },
+		{ "<M-h>", ":TmuxResizeLeft<CR>", desc = "Resize left", nowait = true, remap = false },
+		{ "<M-j>", ":TmuxResizeDown<CR>", desc = "Resize down", nowait = true, remap = false },
+		{ "<M-k>", ":TmuxResizeUp<CR>", desc = "Resize up", nowait = true, remap = false },
+		{ "<M-l>", ":TmuxResizeRight<CR>", desc = "Resize right", nowait = true, remap = false },
+		{ "<M-q>", ":bdelete<CR>", desc = "Close buffer", nowait = true, remap = false },
+		{ "<S-TAB>", ":bprevious<CR>", desc = "Previous buffer", nowait = true, remap = false },
+		{ "<TAB>", ":bnext<CR>", desc = "Next buffer", nowait = true, remap = false },
+		{
+			"<leader>/",
+			"<cmd>lua require('Comment.api').toggle.linewise.current()<CR>",
+			desc = "Toggle comment",
+			nowait = true,
+			remap = false,
+		},
+		{ "<leader>A", "<cmd>Alpha<cr>", desc = "Alpha welcome screen", nowait = true, remap = false },
+		{ "<leader>Q", "<cmd>q!<CR>", desc = "Quit", nowait = true, remap = false },
+		{ "<leader>W", "<cmd>w !sudo tee %<CR>", desc = "Sudo Save", nowait = true, remap = false },
+		{
+			"<leader>b",
 			"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-			"Buffers",
+			desc = "Buffers",
+			nowait = true,
+			remap = false,
 		},
-		s = { "<cmd>w! | source %<cr>", "Save and source" },
-		x = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-		w = { "<cmd>w!<CR>", "Save" },
-		W = { "<cmd>w !sudo tee %<CR>", "Sudo Save" },
-		e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-		h = { "<cmd>nohlsearch<CR>", "No Highlight" },
-		Q = { "<cmd>q!<CR>", "Quit" },
-		["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "Toggle comment" },
-
-		["A"] = { "<cmd>Alpha<cr>", "Alpha welcome screen" },
-		f = {
-			name = "Telescope",
-			F = {
-				"<cmd>Telescope find_files<cr>",
-				"Find files with preview",
-			},
-			f = {
-				"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-				"Find files",
-			},
-			b = {
-				"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-				"Buffers",
-			},
-			t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-			s = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-			h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-			M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-			r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-			R = { "<cmd>Telescope registers<cr>", "Registers" },
-			k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-			c = { "<cmd>Telescope commands<cr>", "Commands" },
+		{ "<leader>c", group = "Copilot", nowait = true, remap = false },
+		{
+			"<leader>ct",
+			"<cmd>lua require('copilot.suggestion').toggle_auto_trigger()<cr>",
+			desc = "Toggle",
+			nowait = true,
+			remap = false,
 		},
-
-		g = {
-			name = "Git",
-			-- g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-			j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-			k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-			l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-			p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-			r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-			R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-			s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-			u = {
-				"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-				"Undo Stage Hunk",
-			},
-			o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-			b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-			c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-			d = {
-				"<cmd>Gitsigns diffthis HEAD<cr>",
-				"Diff",
-			},
+		{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer", nowait = true, remap = false },
+		{ "<leader>f", group = "Telescope", nowait = true, remap = false },
+		{
+			"<leader>fF",
+			"<cmd>Telescope find_files<cr>",
+			desc = "Find files with preview",
+			nowait = true,
+			remap = false,
 		},
-
-		l = {
-			name = "LSP",
-			a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-			d = {
-				"<cmd>Telescope lsp_document_diagnostics<cr>",
-				"Document Diagnostics",
-			},
-			w = {
-				"<cmd>Telescope lsp_workspace_diagnostics<cr>",
-				"Workspace Diagnostics",
-			},
-			f = { "<cmd>lua require('conform').format({async = true})<cr>", "Format" },
-			h = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
-			i = { "<cmd>LspInfo<cr>", "Info" },
-			I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-			j = {
-				"<cmd>lua vim.diagnostic.goto_next()<CR>",
-				"Next Diagnostic",
-			},
-			k = {
-				"<cmd>lua vim.diagnostic.goto_prev()<cr>",
-				"Prev Diagnostic",
-			},
-			l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-			q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-			r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-			s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-			S = {
-				"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-				"Workspace Symbols",
-			},
+		{ "<leader>fM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages", nowait = true, remap = false },
+		{ "<leader>fR", "<cmd>Telescope registers<cr>", desc = "Registers", nowait = true, remap = false },
+		{
+			"<leader>fb",
+			"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+			desc = "Buffers",
+			nowait = true,
+			remap = false,
 		},
-
-		c = {
-			name = "Copilot",
-			t = { "<cmd>lua require('copilot.suggestion').toggle_auto_trigger()<cr>", "Toggle" },
+		{ "<leader>fc", "<cmd>Telescope commands<cr>", desc = "Commands", nowait = true, remap = false },
+		{
+			"<leader>ff",
+			"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+			desc = "Find files",
+			nowait = true,
+			remap = false,
 		},
-
-		t = {
-			name = "Terminal",
-			f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-			h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-			v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find Help", nowait = true, remap = false },
+		{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps", nowait = true, remap = false },
+		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
+		{ "<leader>fs", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme", nowait = true, remap = false },
+		{ "<leader>ft", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text", nowait = true, remap = false },
+		{ "<leader>g", group = "Git", nowait = true, remap = false },
+		{
+			"<leader>gR",
+			"<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
+			desc = "Reset Buffer",
+			nowait = true,
+			remap = false,
 		},
+		{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch", nowait = true, remap = false },
+		{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit", nowait = true, remap = false },
+		{ "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff", nowait = true, remap = false },
+		{
+			"<leader>gj",
+			"<cmd>lua require 'gitsigns'.next_hunk()<cr>",
+			desc = "Next Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gk",
+			"<cmd>lua require 'gitsigns'.prev_hunk()<cr>",
+			desc = "Prev Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{ "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame", nowait = true, remap = false },
+		{ "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file", nowait = true, remap = false },
+		{
+			"<leader>gp",
+			"<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
+			desc = "Preview Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gr",
+			"<cmd>lua require 'gitsigns'.reset_hunk()<cr>",
+			desc = "Reset Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gs",
+			"<cmd>lua require 'gitsigns'.stage_hunk()<cr>",
+			desc = "Stage Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gu",
+			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+			desc = "Undo Stage Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{ "<leader>h", "<cmd>nohlsearch<CR>", desc = "No Highlight", nowait = true, remap = false },
+		{ "<leader>l", group = "LSP", nowait = true, remap = false },
+		{ "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info", nowait = true, remap = false },
+		{
+			"<leader>lS",
+			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+			desc = "Workspace Symbols",
+			nowait = true,
+			remap = false,
+		},
+		{ "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", nowait = true, remap = false },
+		{
+			"<leader>ld",
+			"<cmd>Telescope lsp_document_diagnostics<cr>",
+			desc = "Document Diagnostics",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lf",
+			"<cmd>lua require('conform').format({async = true})<cr>",
+			desc = "Format",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lh",
+			"<cmd>lua vim.lsp.buf.signature_help()<CR>",
+			desc = "Signature help",
+			nowait = true,
+			remap = false,
+		},
+		{ "<leader>li", "<cmd>LspInfo<cr>", desc = "Info", nowait = true, remap = false },
+		{
+			"<leader>lj",
+			"<cmd>lua vim.diagnostic.goto_next()<CR>",
+			desc = "Next Diagnostic",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lk",
+			"<cmd>lua vim.diagnostic.goto_prev()<cr>",
+			desc = "Prev Diagnostic",
+			nowait = true,
+			remap = false,
+		},
+		{ "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action", nowait = true, remap = false },
+		{
+			"<leader>lq",
+			"<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>",
+			desc = "Quickfix",
+			nowait = true,
+			remap = false,
+		},
+		{ "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename", nowait = true, remap = false },
+		{
+			"<leader>ls",
+			"<cmd>Telescope lsp_document_symbols<cr>",
+			desc = "Document Symbols",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lw",
+			"<cmd>Telescope lsp_workspace_diagnostics<cr>",
+			desc = "Workspace Diagnostics",
+			nowait = true,
+			remap = false,
+		},
+		{ "<leader>s", "<cmd>w! | source %<cr>", desc = "Save and source", nowait = true, remap = false },
+		{ "<leader>t", group = "Terminal", nowait = true, remap = false },
+		{ "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float", nowait = true, remap = false },
+		{
+			"<leader>th",
+			"<cmd>ToggleTerm size=10 direction=horizontal<cr>",
+			desc = "Horizontal",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>tv",
+			"<cmd>ToggleTerm size=80 direction=vertical<cr>",
+			desc = "Vertical",
+			nowait = true,
+			remap = false,
+		},
+		{ "<leader>w", "<cmd>w!<CR>", desc = "Save", nowait = true, remap = false },
+		{ "<leader>x", "<cmd>Bdelete!<CR>", desc = "Close Buffer", nowait = true, remap = false },
 	},
-}
-
-local normal_opts = {
-	mode = "n", -- NORMAL mode
-	prefix = "",
-	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = true, -- use `nowait` when creating keymaps
 }
 
 -- VISUAL mode mappings
 -- s, x, v modes are handled the same way by which_key
 local visual_mappings = {
-	["<leader>"] = {
-		["/"] = {
+	{
+		mode = { "v" },
+		{ "<", "<gv", desc = "Shift Left", nowait = true, remap = false },
+		{
+			"<leader>/",
 			'<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
-			"Toggle Comment",
+			desc = "Toggle Comment",
+			nowait = true,
+			remap = false,
 		},
+		{ ">", ">gv", desc = "Shift Right", nowait = true, remap = false },
+		{ "p", '"_dP', desc = "Paste", nowait = true, remap = false },
 	},
-	["p"] = { '"_dP', "Paste" },
-	["<"] = { "<gv", "Shift Left" },
-	[">"] = { ">gv", "Shift Right" },
-}
-
-local visual_opts = {
-	mode = "v", -- VISUAL mode
-	prefix = "",
-	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = true, -- use `nowait` when creating keymaps
 }
 
 -- INSERT mode mappings
-local insert_mappings = {
-}
-
-local insert_opts = {
-	mode = "i", -- INSERT mode
-	prefix = "",
-	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = true, -- use `nowait` when creating keymaps
-}
+local insert_mappings = {}
 
 return {
 	"folke/which-key.nvim",
@@ -328,8 +401,8 @@ return {
 
 		which_key.setup(setup)
 
-		which_key.register(normal_mappings, normal_opts)
-		which_key.register(visual_mappings, visual_opts)
-		which_key.register(insert_mappings, insert_opts)
+		which_key.add(normal_mappings)
+		which_key.add(visual_mappings)
+		which_key.add(insert_mappings)
 	end,
 }
