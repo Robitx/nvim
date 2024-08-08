@@ -20,7 +20,10 @@ return {
 		{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 
 		-- Additional lua configuration, makes nvim stuff amazing!
-		"folke/neodev.nvim",
+		{
+			"folke/lazydev.nvim",
+			ft = "lua",
+		},
 	},
 	config = config,
 }

@@ -347,6 +347,7 @@ local insert_mappings = {}
 
 return {
 	"folke/which-key.nvim",
+    version = "3.4.0",
 	config = function()
 		local status_ok, which_key = pcall(require, "which-key")
 		if not status_ok then
