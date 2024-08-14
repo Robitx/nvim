@@ -14,15 +14,25 @@ return {
 	"mfussenegger/nvim-lint",
 
 	config = function()
-		require("lint").linters_by_ft = linters
+		local lint = require("lint")
+		lint.linters_by_ft = linters
 
-		require("lint").linters.luacheck.args = {
+		lint.linters.luacheck.args = {
 			args = { "--globals", "vim" },
 		}
 
+		local project_dir = vim.fs.dirname(vim.fs.find({ ".revive.toml" }, { upward = true })[1])
+		if project_dir then
+			lint.linters.revive.args = {
+				"-config",
+				project_dir .. "/.revive.toml",
+				vim.fn.expand("%"),
+			}
+		end
+
 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 			callback = function()
-				require("lint").try_lint()
+				lint.try_lint()
 			end,
 		})
 	end,
