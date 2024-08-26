@@ -92,7 +92,7 @@ return {
 
 			-- directory for storing chat files
 			-- chat_dir = "/backup/gp_chats",
-			chat_dir = "/tmp/gp_chats",
+			chat_dir = "/backup/notes",
 			-- explicitly confirm deletion of a chat file
 			chat_confirm_delete = false,
 
