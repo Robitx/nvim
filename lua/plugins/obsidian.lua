@@ -45,10 +45,6 @@ return {
 					name = "notes",
 					path = "/backup/notes",
 				},
-				{
-					name = "gp_chats",
-					path = "/tmp/gp_chats",
-				},
 			},
 		})
 	end,
