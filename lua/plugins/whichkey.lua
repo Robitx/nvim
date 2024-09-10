@@ -169,11 +169,11 @@ local normal_mappings = {
 		{ "<M-q>", ":bdelete<CR>", desc = "Close buffer" },
 		{ "<S-TAB>", ":bprevious<CR>", desc = "Previous buffer" },
 		{ "<TAB>", ":bnext<CR>", desc = "Next buffer" },
-		{
-			"<leader>/",
-			"<cmd>lua require('Comment.api').toggle.linewise.current()<CR>",
-			desc = "Toggle comment",
-		},
+		-- {
+		-- 	"<leader>/",
+		-- 	"<cmd>lua require('Comment.api').toggle.linewise.current()<CR>",
+		-- 	desc = "Toggle comment",
+		-- },
 		{ "<leader>A", "<cmd>Alpha<cr>", desc = "Alpha welcome screen" },
 		{ "<leader>Q", "<cmd>q!<CR>", desc = "Quit" },
 		{ "<leader>W", "<cmd>w !sudo tee %<CR>", desc = "Sudo Save" },
@@ -332,11 +332,11 @@ local visual_mappings = {
 		nowait = true,
 		remap = false,
 		{ "<", "<gv", desc = "Shift Left" },
-		{
-			"<leader>/",
-			'<esc><cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<cr>',
-			desc = "Toggle Comment",
-		},
+		-- {
+		-- 	"<leader>/",
+		-- 	'<esc><cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<cr>',
+		-- 	desc = "Toggle Comment",
+		-- },
 		{ ">", ">gv", desc = "Shift Right" },
 		{ "p", '"_dP', desc = "Paste" },
 	},

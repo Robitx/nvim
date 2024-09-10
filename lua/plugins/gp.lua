@@ -1,6 +1,10 @@
 return {
 	"robitx/gp.nvim",
 	dev = not os.getenv("RUNNING_IN_DOCKER"),
+	dependencies = {
+		"hrsh7th/nvim-cmp",
+		"folke/which-key.nvim",
+	},
 	-- branch = "codebase_cleanup",
 	-- version = "v1.13.0",
 
@@ -87,8 +91,8 @@ return {
 				},
 			},
 
-            default_chat_agent = nil,
-            default_command_agent = nil,
+			default_chat_agent = nil,
+			default_command_agent = nil,
 
 			-- directory for storing chat files
 			-- chat_dir = "/backup/gp_chats",
