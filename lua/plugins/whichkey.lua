@@ -51,33 +51,6 @@ vim.keymap.set("n", "<F7>", "<cmd>lua require'dapui'.toggle()<cr>", { desc = "De
 -- 	dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 -- end, { desc = "Debug: Set Breakpoint" })
 
--- HOP
-vim.api.nvim_set_keymap(
-	"",
-	"f",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-	{}
-)
-vim.api.nvim_set_keymap(
-	"",
-	"F",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-	{}
-)
-vim.api.nvim_set_keymap(
-	"",
-	"t",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
-	{}
-)
-vim.api.nvim_set_keymap(
-	"",
-	"T",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>",
-	{}
-)
-vim.api.nvim_set_keymap("", "s", "<cmd>lua require'hop'.hint_words({ })<cr>", {})
-
 local setup = {
 	plugins = {
 		marks = true, -- shows a list of your marks on ' and `
