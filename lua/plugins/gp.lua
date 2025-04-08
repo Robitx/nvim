@@ -164,6 +164,27 @@ return {
 					name = "ChatGPT3-5",
 					disable = true,
 				},
+
+				{
+					provider = "openai",
+					name = "O1-mini",
+					chat = true,
+					command = true,
+					-- string with model name or table with model name and parameters
+					model = { model = "o1-mini", temperature = 1.1, top_p = 1 },
+					-- system prompt (use this to specify the persona/role of the AI)
+					system_prompt = require("gp.defaults").chat_system_prompt,
+				},
+				{
+					provider = "openai",
+					name = "O1-preview",
+					chat = true,
+					command = true,
+					-- string with model name or table with model name and parameters
+					model = { model = "o1-preview", temperature = 1.1, top_p = 1 },
+					-- system prompt (use this to specify the persona/role of the AI)
+					system_prompt = require("gp.defaults").chat_system_prompt,
+				},
 				{ name = "ChatOllamaLlama3", disable = true },
 				{ name = "CodeOllamaLlama3", disable = true },
 				{
