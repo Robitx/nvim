@@ -16,23 +16,7 @@ local config = function()
 		return
 	end
 
-	local install = {
-        -- These are handled by nix-config:
-		-- "revive",
-		-- "vale",
-		-- "eslint_d",
-		-- "flake8",
-		-- "isort",
-		-- "black",
-		-- "goimports",
-		-- "golines",
-		-- "prettier",
-		-- "beautysh",
-		-- "luacheck",
-	}
-
 	mason.setup({
-		ensure_installed = install,
 		ui = {
 			icons = {
 				package_installed = "✓",
@@ -40,86 +24,81 @@ local config = function()
 		},
 	})
 
-	vim.api.nvim_create_user_command("MasonInstallAll", function()
-		vim.cmd("MasonInstall " .. table.concat(install, " "))
-	end, {})
+	local lsp_install = {
+		"pyright",
+		"yamlls",
+		"jsonls",
+		"html",
+		"cssls",
+	}
 
-	local servers = {
+    local enable_lsp = {
 		"efm",
 		"clangd",
 		"lua_ls",
-		"cssls",
-		"html",
 		"ts_ls",
 		"pyright",
 		"bashls",
-		"jsonls",
-		"yamlls",
 		"gopls",
-	}
-
-    local lsp_install = {
-        "pyright"
+        "rust_analyzer",
     }
+
+    for _, server in pairs(enable_lsp) do
+        vim.lsp.enable(server)
+    end
 
 	mason_lspconfig.setup({
 		ensure_installed = lsp_install,
-		automatic_installation = false,
+		automatic_enable = true,
 	})
 
-	mason_lspconfig.setup_handlers({
-		-- The first entry (without a key) will be the default handler
-		-- and will be called for each installed server that doesn't have
-		-- a dedicated handler.
-		function(server_name) -- default handler (optional)
-			require("lspconfig")[server_name].setup({})
-		end,
-		["lua_ls"] = function()
-			lspconfig.lua_ls.setup({
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim" },
-						},
-					},
-				},
-			})
-		end,
-	})
+	return
 
+	-- local servers = {
+	-- 	"efm",
+	-- 	"clangd",
+	-- 	"lua_ls",
+	-- 	"cssls",
+	-- 	"html",
+	-- 	"ts_ls",
+	-- 	"pyright",
+	-- 	"bashls",
+	-- 	"jsonls",
+	-- 	"yamlls",
+	-- 	"gopls",
+	-- }
 	--
-	local custom_configs = {
-		lua_ls = require("lsp.settings.lua_ls"),
-		gopls = require("lsp.settings.gopls"),
-		pyright = require("lsp.settings.pyright"),
-	}
-
-	local opts = {}
-	for _, server in pairs(servers) do
-		opts = {
-			on_attach = require("lsp.handlers").on_attach,
-			capabilities = require("lsp.handlers").capabilities,
-			-- print capabilities
-		}
-		-- print all options
-
-		if custom_configs[server] then
-			opts = vim.tbl_deep_extend("force", custom_configs[server], opts)
-		end
-
-		-- print(server, vim.inspect(opts))
-
-		lspconfig[server].setup(opts)
-	end
+	--
+	-- local custom_configs = {
+	-- 	lua_ls = require("lsp.settings.lua_ls"),
+	-- 	gopls = require("lsp.settings.gopls"),
+	-- 	pyright = require("lsp.settings.pyright"),
+	-- }
+	--
+	-- local opts = {}
+	-- for _, server in pairs(servers) do
+	-- 	opts = {
+	-- 		on_attach = require("lsp.handlers").on_attach,
+	-- 		capabilities = require("lsp.handlers").capabilities,
+	-- 		-- print capabilities
+	-- 	}
+	-- 	-- print all options
+	--
+	-- 	if custom_configs[server] then
+	-- 		opts = vim.tbl_deep_extend("force", custom_configs[server], opts)
+	-- 	end
+	--
+	-- 	-- print(server, vim.inspect(opts))
+	--
+	-- 	lspconfig[server].setup(opts)
+	-- end
 end
 
 return {
-	-- LSP Configuration & Plugins
-	"williamboman/mason.nvim",
-
+	"mason-org/mason-lspconfig.nvim",
 	dependencies = {
-		-- automatically install lsps to stdpath for neovim
-		"williamboman/mason-lspconfig.nvim",
+		{ "mason-org/mason.nvim", opts = {} },
+		"neovim/nvim-lspconfig",
 	},
 	config = config,
 }
