@@ -14,6 +14,7 @@ local config = {
 		css = { "prettier" },
 		scss = { "prettier" },
 		nix = { "nixpkgs_fmt" },
+		rust = { "rustfmt" },
 	},
 }
 
