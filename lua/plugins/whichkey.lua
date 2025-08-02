@@ -228,6 +228,61 @@ local normal_mappings = {
 			desc = "Undo Stage Hunk",
 		},
 		{ "<leader>h", "<cmd>nohlsearch<CR>", desc = "No Highlight" },
+		{ "<leader>s", "<cmd>w! | source %<cr>", desc = "Save and source" },
+		{ "<leader>t", group = "Terminal" },
+		{ "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float" },
+		{
+			"<leader>th",
+			"<cmd>ToggleTerm size=10 direction=horizontal<cr>",
+			desc = "Horizontal",
+		},
+		{
+			"<leader>tv",
+			"<cmd>ToggleTerm size=80 direction=vertical<cr>",
+			desc = "Vertical",
+		},
+		{ "<leader>w", "<cmd>w!<CR>", desc = "Save" },
+		{ "<leader>x", "<cmd>Bdelete!<CR>", desc = "Close Buffer" },
+
+		-- When the Nvim LSP client starts it enables diagnostics |vim.diagnostic| (see
+		-- |vim.diagnostic.config()| to customize). It also sets various default options,
+		-- listed below, if (1) the language server supports the functionality and (2)
+		-- the options are empty or were set by the builtin runtime (ftplugin) files. The
+		-- options are not restored when the LSP client is stopped or detached.
+		--
+		-- - 'omnifunc' is set to |vim.lsp.omnifunc()|, use |i_CTRL-X_CTRL-O| to trigger
+		--   completion.
+		-- - 'tagfunc' is set to |vim.lsp.tagfunc()|. This enables features like
+		--   go-to-definition, |:tjump|, and keymaps like |CTRL-]|, |CTRL-W_]|,
+		--   |CTRL-W_}| to utilize the language server.
+		-- - 'formatexpr' is set to |vim.lsp.formatexpr()|, so you can format lines via
+		--   |gq| if the language server supports it.
+		--   - To opt out of this use |gw| instead of gq, or clear 'formatexpr' on |LspAttach|.
+		-- - |K| is mapped to |vim.lsp.buf.hover()| unless |'keywordprg'| is customized or
+		--   a custom keymap for `K` exists.
+		--
+		--                                           *grr* *gra* *grn* *gri* *i_CTRL-S*
+		-- Some keymaps are created unconditionally when Nvim starts:
+		-- - "grn" is mapped in Normal mode to |vim.lsp.buf.rename()|
+		-- - "gra" is mapped in Normal and Visual mode to |vim.lsp.buf.code_action()|
+		-- - "grr" is mapped in Normal mode to |vim.lsp.buf.references()|
+		-- - "gri" is mapped in Normal mode to |vim.lsp.buf.implementation()|
+		-- - "gO" is mapped in Normal mode to |vim.lsp.buf.document_symbol()|
+		-- - CTRL-S is mapped in Insert mode to |vim.lsp.buf.signature_help()|
+		--
+		-- If not wanted, these keymaps can be removed at any time using
+		-- |vim.keymap.del()| or |:unmap| (see also |gr-default|).
+
+		{ "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go to Definition" },
+		{ "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc = "Go to Declaration" },
+		{ "K", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover Documentation" },
+		{ "grf", "<cmd>lua require('conform').format({async = true})<CR>", desc = "Format" },
+		{ "grh", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Go to Hover" },
+		{ "grs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Signature Help" },
+		{ "grS", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", desc = "Document Symbols" },
+		{ "grW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", desc = "Workspace Symbols" },
+		{ "grj", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "Next Diagnostic" },
+		{ "grk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "Previous Diagnostic" },
 		{ "<leader>l", group = "LSP" },
 		{ "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info" },
 		{
@@ -279,21 +334,6 @@ local normal_mappings = {
 			"<cmd>Telescope lsp_workspace_diagnostics<cr>",
 			desc = "Workspace Diagnostics",
 		},
-		{ "<leader>s", "<cmd>w! | source %<cr>", desc = "Save and source" },
-		{ "<leader>t", group = "Terminal" },
-		{ "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float" },
-		{
-			"<leader>th",
-			"<cmd>ToggleTerm size=10 direction=horizontal<cr>",
-			desc = "Horizontal",
-		},
-		{
-			"<leader>tv",
-			"<cmd>ToggleTerm size=80 direction=vertical<cr>",
-			desc = "Vertical",
-		},
-		{ "<leader>w", "<cmd>w!<CR>", desc = "Save" },
-		{ "<leader>x", "<cmd>Bdelete!<CR>", desc = "Close Buffer" },
 	},
 }
 
