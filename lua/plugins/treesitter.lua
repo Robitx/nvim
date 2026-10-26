@@ -1,110 +1,118 @@
+-- nvim-treesitter `main` branch: it only installs parsers and queries,
+-- highlighting/indent are enabled per buffer below
+local parsers = {
+	"bash",
+	"c",
+	"cpp",
+	"go",
+	"lua",
+	"python",
+	"rust",
+	"tsx",
+	"javascript",
+	"typescript",
+	"vimdoc",
+	"vim",
+	"markdown",
+	"markdown_inline",
+}
+
+local highlight_disable = { "css" }
+local indent_disable = { "python", "css" }
+
 local config = function()
-	local status_ok, tsc = pcall(require, "nvim-treesitter.configs")
-	if not status_ok then
-		return
-	end
+	require("nvim-treesitter").install(parsers)
 
-	---@diagnostic disable-next-line missing-fields
-	tsc.setup({
+	vim.api.nvim_create_autocmd("FileType", {
+		group = vim.api.nvim_create_augroup("treesitter_start", { clear = true }),
+		callback = function(args)
+			local ft = vim.bo[args.buf].filetype
+			if vim.tbl_contains(highlight_disable, ft) then
+				return
+			end
+			if not pcall(vim.treesitter.start, args.buf) then
+				return
+			end
+			if not vim.tbl_contains(indent_disable, ft) then
+				vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end
+		end,
+	})
 
-		-- Add languages to be installed here that you want installed for treesitter
-		ensure_installed = {
-			"bash",
-			"c",
-			"cpp",
-			"go",
-			"lua",
-			"python",
-			"rust",
-			"tsx",
-			"javascript",
-			"typescript",
-			"vimdoc",
-			"vim",
-			"markdown",
-			"markdown_inline",
+	-- incremental selection, using the built-in `an` / `in` (Neovim 0.12)
+	vim.keymap.set("n", "<c-space>", "van", { remap = true, desc = "Select treesitter node" })
+	vim.keymap.set("x", "<c-space>", "an", { remap = true, desc = "Expand to parent node" })
+	vim.keymap.set("x", "<M-space>", "in", { remap = true, desc = "Shrink to child node" })
+end
+
+local textobjects_config = function()
+	require("nvim-treesitter-textobjects").setup({
+		select = {
+			lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
 		},
-
-		-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-		auto_install = false,
-
-		incremental_selection = {
-			enable = true,
-			keymaps = {
-				init_selection = "<c-space>",
-				node_incremental = "<c-space>",
-				scope_incremental = "<c-s>",
-				node_decremental = "<M-space>",
-			},
-		},
-		textobjects = {
-			select = {
-				enable = true,
-				lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-				keymaps = {
-					-- You can use the capture groups defined in textobjects.scm
-					["aa"] = "@parameter.outer",
-					["ia"] = "@parameter.inner",
-					["af"] = "@function.outer",
-					["if"] = "@function.inner",
-					["ac"] = "@class.outer",
-					["ic"] = "@class.inner",
-				},
-			},
-			move = {
-				enable = true,
-				set_jumps = true, -- whether to set jumps in the jumplist
-				goto_next_start = {
-					["]m"] = "@function.outer",
-					["]]"] = "@class.outer",
-				},
-				goto_next_end = {
-					["]M"] = "@function.outer",
-					["]["] = "@class.outer",
-				},
-				goto_previous_start = {
-					["[m"] = "@function.outer",
-					["[["] = "@class.outer",
-				},
-				goto_previous_end = {
-					["[M"] = "@function.outer",
-					["[]"] = "@class.outer",
-				},
-			},
-			swap = {
-				enable = true,
-				swap_next = {
-					["<leader>a"] = "@parameter.inner",
-				},
-				swap_previous = {
-					["<leader>A"] = "@parameter.inner",
-				},
-			},
-		},
-
-		ignore_install = { "" }, -- List of parsers to ignore installing
-		highlight = {
-			enable = true, -- false will disable the whole extension
-			disable = { "css" }, -- list of language that will be disabled
-		},
-		indent = {
-			enable = true,
-			disable = {
-				"python",
-				"css",
-			},
+		move = {
+			set_jumps = true, -- whether to set jumps in the jumplist
 		},
 	})
+
+	local select = require("nvim-treesitter-textobjects.select")
+	local move = require("nvim-treesitter-textobjects.move")
+	local swap = require("nvim-treesitter-textobjects.swap")
+
+	local selects = {
+		["aa"] = "@parameter.outer",
+		["ia"] = "@parameter.inner",
+		["af"] = "@function.outer",
+		["if"] = "@function.inner",
+		["ac"] = "@class.outer",
+		["ic"] = "@class.inner",
+	}
+	for lhs, query in pairs(selects) do
+		vim.keymap.set({ "x", "o" }, lhs, function()
+			select.select_textobject(query, "textobjects")
+		end, { desc = "Select " .. query })
+	end
+
+	local moves = {
+		goto_next_start = { ["]m"] = "@function.outer", ["]]"] = "@class.outer" },
+		goto_next_end = { ["]M"] = "@function.outer", ["]["] = "@class.outer" },
+		goto_previous_start = { ["[m"] = "@function.outer", ["[["] = "@class.outer" },
+		goto_previous_end = { ["[M"] = "@function.outer", ["[]"] = "@class.outer" },
+	}
+	for fn, maps in pairs(moves) do
+		for lhs, query in pairs(maps) do
+			vim.keymap.set({ "n", "x", "o" }, lhs, function()
+				move[fn](query, "textobjects")
+			end, { desc = fn .. " " .. query })
+		end
+	end
+
+	vim.keymap.set("n", "<leader>a", function()
+		swap.swap_next("@parameter.inner")
+	end, { desc = "Swap with next parameter" })
+	vim.keymap.set("n", "<leader>A", function()
+		swap.swap_previous("@parameter.inner")
+	end, { desc = "Swap with previous parameter" })
 end
 
 return {
-	"nvim-treesitter/nvim-treesitter",
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-refactor",
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		"nvim-treesitter/nvim-treesitter-context",
-		"nvim-treesitter/playground",
+	{
+		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false, -- does not support lazy-loading
+		build = ":TSUpdate",
+		config = config,
 	},
-	config = config,
-	build = ":TSUpdate",
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		init = function()
+			-- these ftplugins define buffer-local ]] [[ ]m ... which would shadow the moves above
+			vim.g.no_python_maps = true
+			vim.g.no_go_maps = true
+			vim.g.no_rust_maps = true
+		end,
+		config = textobjects_config,
+	},
+	{ "nvim-treesitter/nvim-treesitter-context" },
 }
