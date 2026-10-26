@@ -1,6 +1,6 @@
 return {
 	"robitx/gp.nvim",
-	dev = not os.getenv("RUNNING_IN_DOCKER"),
+	-- dev = not os.getenv("RUNNING_IN_DOCKER"),
 	dependencies = {
 		"hrsh7th/nvim-cmp",
 		"folke/which-key.nvim",
@@ -96,7 +96,7 @@ return {
 
 			-- directory for storing chat files
 			-- chat_dir = "/backup/gp_chats",
-			chat_dir = "/backup/notes",
+			chat_dir = vim.fn.expand("~/backup/notes"),
 			-- explicitly confirm deletion of a chat file
 			chat_confirm_delete = false,
 

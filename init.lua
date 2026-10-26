@@ -84,7 +84,7 @@ require("lazy").setup({
 	import = "plugins",
 }, {
 	dev = {
-		path = "/backup/pgit/",
+		path = "~/backup/pgit/",
 		pattern = "",
 	},
 })

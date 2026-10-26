@@ -43,7 +43,7 @@ return {
 			workspaces = {
 				{
 					name = "notes",
-					path = "/backup/notes",
+					path = vim.fn.expand("~/backup/notes"),
 				},
 			},
 		})
