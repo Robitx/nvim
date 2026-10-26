@@ -281,10 +281,10 @@ local normal_mappings = {
 		{ "grs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Signature Help" },
 		{ "grS", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", desc = "Document Symbols" },
 		{ "grW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", desc = "Workspace Symbols" },
-		{ "grj", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "Next Diagnostic" },
-		{ "grk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "Previous Diagnostic" },
+		{ "grj", "<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>", desc = "Next Diagnostic" },
+		{ "grk", "<cmd>lua vim.diagnostic.jump({ count = -1, float = true })<CR>", desc = "Previous Diagnostic" },
 		{ "<leader>l", group = "LSP" },
-		{ "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info" },
+		{ "<leader>lI", "<cmd>Mason<cr>", desc = "Installer Info" },
 		{
 			"<leader>lS",
 			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
@@ -293,7 +293,7 @@ local normal_mappings = {
 		{ "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
 		{
 			"<leader>ld",
-			"<cmd>Telescope lsp_document_diagnostics<cr>",
+			"<cmd>Telescope diagnostics bufnr=0<cr>",
 			desc = "Document Diagnostics",
 		},
 		{
@@ -309,18 +309,18 @@ local normal_mappings = {
 		{ "<leader>li", "<cmd>LspInfo<cr>", desc = "Info" },
 		{
 			"<leader>lj",
-			"<cmd>lua vim.diagnostic.goto_next()<CR>",
+			"<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>",
 			desc = "Next Diagnostic",
 		},
 		{
 			"<leader>lk",
-			"<cmd>lua vim.diagnostic.goto_prev()<cr>",
+			"<cmd>lua vim.diagnostic.jump({ count = -1, float = true })<cr>",
 			desc = "Prev Diagnostic",
 		},
 		{ "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action" },
 		{
 			"<leader>lq",
-			"<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>",
+			"<cmd>lua vim.diagnostic.setloclist()<cr>",
 			desc = "Quickfix",
 		},
 		{ "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
@@ -331,7 +331,7 @@ local normal_mappings = {
 		},
 		{
 			"<leader>lw",
-			"<cmd>Telescope lsp_workspace_diagnostics<cr>",
+			"<cmd>Telescope diagnostics<cr>",
 			desc = "Workspace Diagnostics",
 		},
 	},

@@ -67,7 +67,7 @@ vim.cmd([[
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 ---@diagnostic disable-next-line missing-fields
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -155,6 +155,6 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 -- Highlight Yanked Text
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	callback = function()
-		vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+		vim.hl.on_yank({ higroup = "Visual", timeout = 200 })
 	end,
 })

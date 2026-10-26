@@ -86,7 +86,7 @@ local config = function()
 				bg = { attribute = "bg", highlight = "Normal" },
 			},
 			indicator_selected = {
-				fg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
+				fg = { attribute = "fg", highlight = "DiagnosticHint" },
 				bg = { attribute = "bg", highlight = "Normal" },
 			},
 		},

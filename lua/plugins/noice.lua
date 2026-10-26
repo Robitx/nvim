@@ -32,8 +32,6 @@ return {
 			},
 		})
 
-        a = rawget
-
 		require("which-key").add({
 			{
 				mode = { "n" },
